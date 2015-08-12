@@ -1,1 +1,13 @@
 /* add custom styles */
+
+/*#create-cards {
+  display: none;
+}
+
+.make-or-begin, .premade-or-create{
+  display: none;
+}*/
+
+.form-group{
+  padding-top: 10px;
+}

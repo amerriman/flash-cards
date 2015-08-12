@@ -10,6 +10,100 @@
   </head>
   <body>
 
+    <div class="container-fluid">
+
+
+
+    <form class="form-horizontal">
+
+      <div class="form-group">
+        <div class="col-md-offset-5 col-xs-offset-5 col-xs-12">
+          <button type="submit" id="initial" class="btn btn-success">Let's Get Started!</button>
+        </div>
+      </div>
+
+      <div id="create-cards">
+        <div class="form-group">
+          <label for="createQuestion" class="col-md-2 control-label">Question</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" id="question" placeholder="Question">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="createAnswer" class="col-md-2 control-label">Answer</label>
+          <div class="col-md-8">
+            <input type="text" class="form-control" id="answer" placeholder="Answer">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-info" id="create-card-btn">Create Flashcard!</button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+
+      <div class="row premade-or-create"> <!-- begin row of two buttons -->
+      <div class="form-group">
+        <div class="form-group col-md-offset-3 col-md-4 col-xs-6">
+          <button type="submit" class="btn btn-info btn-lg btn-block" id="pre-made">Choose a Card Set</button>
+        </div>
+      <!-- </div> -->
+      <!-- <div class="form-group"> -->
+        <div class="form-group col-md-4 col-xs-6">
+          <button type="submit" class="btn btn-info btn-lg btn-block" id="create-own">Create Your Own</button>
+        </div>
+      </div>
+    </div> <!-- end row of two buttons -->
+
+    <!-- Checkboxes for choosing from the card sets -->
+    <div class="row">
+      <div class="col-md-offset-5">
+        <label class="checkbox-inline"><input type="checkbox" value="">JavaScript</label>
+        <label class="checkbox-inline"><input type="checkbox" value="">Basic Math</label>
+      </div>
+    </div>
+
+
+
+    <div class="row make-or-begin"> <!-- begin row of two buttons -->
+      <div class="form-group">
+        <div class="form-group col-md-offset-3 col-md-4 col-xs-6">
+          <button type="submit" class="btn btn-info btn-lg btn-block make-or-begin" id="make-another">Make Another Question</button>
+        </div>
+      <!-- </div> -->
+      <!-- <div class="form-group"> -->
+        <div class="form-group col-md-4 col-xs-6">
+          <button type="submit" class="btn btn-info btn-lg btn-block make-or-begin" id="begin-review">Begin Review</button>
+        </div>
+      </div>
+    </div> <!-- end row of two buttons -->
+
+    <!-- Div to append the flash cards to -->
+    <div class="show-cards">
+
+    </div>
+
+    <!-- User answer area -->
+    <!-- <div class="answer-space"> -->
+
+      <div class="form-group answer-space">
+        <label class="col-md-2 control-label">User Input Answer Here</label>
+        <div class="col-md-8">
+          <input type="text" class="form-control" id="user-answer" placeholder="Type answer here...">
+        </div>
+      </div>
+    <!-- </div> -->
+    <div class="form-group">
+        <div class="col-md-offset-5 col-xs-offset-5 col-xs-12">
+          <button type="submit" id="submit-user-answer" class="btn btn-success">Check Answer!</button>
+        </div>
+      </div>
+
+
+
+    </div> <!-- end container -->
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
