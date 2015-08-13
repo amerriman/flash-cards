@@ -11,3 +11,10 @@
 .form-group{
   padding-top: 10px;
 }
+
+.show-cards{
+  border: 1px solid black;
+  border-radius: 10px;
+  min-height: 80px;
+  width: 400px;
+}

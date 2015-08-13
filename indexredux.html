@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Untitled</title>
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+  </head>
+  <body>
+
+ <!--  Screen 1 choose cardset or make new-->
+    <div>
+      <h2>Let's get Started!</h2>
+      <button type="submit" class="btn btn-info btn-lg btn-block" id="pre-made">Choose a Card Set</button>
+      <button type="submit" class="btn btn-info btn-lg btn-block" id="create-own">Create Your Own</button>
+    </div>
+
+    <!-- Screen 2 create a title for cardset-->
+    <div>
+      <h2>Create a Title</h2>
+      <input type="text" class="form-control" id="new-title" placeholder="Create a title for your flash cards">
+      <button type="submit" class="btn btn-info" id="create-cardset-btn">Create Flashcard Set!</button>
+    </div>
+
+
+    <!-- Screen 3 create questions, and show them???-->
+    <div>
+      <h2>Create a Question</h2>
+      <label for="createQuestion" class="col-md-2 control-label">Question</label>
+      <input type="text" class="form-control" id="question" placeholder="Question">
+      <label for="createAnswer" class="col-md-2 control-label">Answer</label>
+      <input type="text" class="form-control" id="answer" placeholder="Answer">
+      <button type="submit" class="btn btn-info" id="create-card-btn">Create Flashcard!</button>
+      <button type="submit" class="btn btn-info btn-lg btn-block make-or-begin" id="make-another">Make Another Question</button>
+      <button type="submit" class="btn btn-info btn-lg btn-block begin-review">Begin Review</button>
+    </div>
+
+
+    <!-- Screen 4 choose a pre-made card set-->
+    <div>
+      <h2>Choose a card set</h2>
+      <label class="checkbox-inline"><input type="checkbox" value="">JavaScript</label>
+      <label class="checkbox-inline"><input type="checkbox" value="">Basic Math</label>
+      <button type="submit" class="btn btn-info btn-lg btn-block begin-review">Begin Review</button>
+    </div>
+
+
+    <!-- Screen 5 Play!-->
+    <div>
+      <div class="show-cards"></div>
+      <label class="col-md-2 control-label">User Input Answer Here</label>
+      <input type="text" class="form-control" id="user-answer" placeholder="Type answer here...">
+      <button type="submit" id="submit-user-answer" class="btn btn-success">Check Answer!</button>
+    </div>
+
+
+
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="js/main.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

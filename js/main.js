@@ -32,17 +32,31 @@ SetOfCards.prototype.shuffle = function(arr){
 
 //show the first card question to the user
 //this might need to be a while loop...while the array has cards in it, do these things.
+var temp =[];
+
 SetOfCards.prototype.showCards = function(arr){
-  var temp;
   var count = 0;
   while(count < arr.length) {
-    temp = arr[count].question;
+    temp = arr[count];
     count++;
-    console.log(temp, "temp");
-    console.log(count, "count");
+    $('.show-cards').append('<h2>' + arr[count].question+'</h2>');
+    //$('.answer-space').append(arr[count].question)
+    break; // temp, for testing
+    //console.log(temp, "temp");
+    //console.log(count, "count");
 
   }
-  return "wooooo";
+  return temp;
+};
+
+SetOfCards.prototype.compareAnswers = function(){
+  var userAnswer = $('#user-answer').val();
+  if(userAnswer === temp.answer){
+    return true;
+  }
+  else {
+    return false;
+  }
 };
 
 //user needs to type in answer
