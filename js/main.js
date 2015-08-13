@@ -1,78 +1,140 @@
+//Global variables - can I make these go away?
+
+//This holds the array of questions that the user has chosen with the checkbox
+var chosenCardSet;
+
+//This holds the current card object that the user is reviewing
+var temp =[];
+
+//This is the shuffled array of cards that will be eventually destroyed as the user goes through the review
+var cardArrayForScreen = [];
+
+//holding cell while new flashcard arrays are being created
+var tempHold = [];
 
 
-var Cards = function(question, answer){
+
+///BASE CONSTRUCTORS
+function Card(question, answer){
   this.question = question;
   this.answer = answer;
+}
+
+function SetOfCards(name){
+  this.name = name;
+  this.cards = [];
+}
+
+function MasterCardSet(name){
+  this.name = name;
+  this.cardSets = [];
+
+}
+
+
+//////MASTER CLASS FUNCTIONS
+
+//add a set of cards to the master card array
+MasterCardSet.prototype.addSet = function(setName){
+  this.cardSets.push(setName);
 };
 
-var SetOfCards = function(setName){
-  this.setName = setName;
-  this.cards = [];
-};
+
+//////SET OF CARD FUNCTIONS
 
 //add a flash card to the SetOfCards cards array
 SetOfCards.prototype.addCard = function(card){
   this.cards.push(card);
 };
 
+//when user chooses from already created sets, after they choose the checkbox and click to begin the review, this searches the 'allFlashCards' set to find the correct set of questions. When it finds the set, it puts it into the 'chosenArray' variable
+function findMatchingCardSet(checked){
+  for(i = 0; i < allFlashCards.cardSets.length; i++){
+    if(allFlashCards.cardSets[i].name === checked){
+      chosenCardSet = allFlashCards.cardSets[i];
+      console.log(chosenCardSet);
+     return chosenCardSet;
+
+    }
+  }
+}
+
+
 //when user chooses set:
-//make a copy of the set, and shuffle it.
+//make a copy of the set, and shuffle it, and assign it to a global variable array (cardArrayForScreen)
 SetOfCards.prototype.shuffle = function(arr){
   var result = [];
-  var workA = arr.slice(0);
-  console.log(workA, "workA");
+  var workA = arr;
   while(workA.length > 0) {
     var random = Math.floor(Math.random() * workA.length);
-    console.log(random, "random");
     result.push(workA.splice(random,1)[0]);
-    console.log(result, "result");
+    cardArrayForScreen = result;
   }
-  return result;
+  return cardArrayForScreen;
 };
 
-//show the first card question to the user
-//this might need to be a while loop...while the array has cards in it, do these things.
-var temp =[];
-
+//take the first card off the shuffled array and store it in another global variable.  Also, clear the screen and append the question to the screen
 SetOfCards.prototype.showCards = function(arr){
-  var count = 0;
-  while(count < arr.length) {
-    temp = arr[count];
-    count++;
-    $('.show-cards').append('<h2>' + arr[count].question+'</h2>');
-    //$('.answer-space').append(arr[count].question)
-    break; // temp, for testing
-    //console.log(temp, "temp");
-    //console.log(count, "count");
-
+  if (arr.length >= 1){
+    temp = arr.shift(arr[0]);
+    $('.show-cards').append('<h4>' + temp.question+'</h4>');
+    return temp;
   }
-  return temp;
+  else{
+    $('.show-cards').append('<h4>All done!</h4>');
+    console.log("ALL DONE!");
+  }
 };
 
-SetOfCards.prototype.compareAnswers = function(){
-  var userAnswer = $('#user-answer').val();
-  if(userAnswer === temp.answer){
+
+//checks if answer is correct - shows user the correct answer.  If incorrect, pushes flashcard back into the array to be shown again. !!!!need to make this go to a random place in the array.
+SetOfCards.prototype.compareAnswers = function(userInput){
+  if(userInput === ''){
+    alert("please enter an answer");
+  }
+  else if(userInput === temp.answer){
+    this.renderCorrect();
     return true;
   }
   else {
+    this.renderIncorrect();
+    //when answer is incorrect, card is returned to the array to be used again
+    cardArrayForScreen.push(temp);
     return false;
   }
 };
 
-//user needs to type in answer
 
-//if answer correct, Hooray and card is removed
-
-//if answer is incorrec, boo and card is put back into array at random location.
-
-//make a div to hold the flashcards and append the questions to it.
-
-//make a user input area to hold the user answer to each card
+//appends answer and message to the flashcard display when user is correct
+SetOfCards.prototype.renderCorrect = function(){
+  $('.show-cards').append('<h4>Correct! The answer is ' + temp.answer +'.</h4>');
+};
 
 
-var javaScriptSet = new SetOfCards("JavaScript");
 
-javaScriptSet.cards = [
+//appends message and answer to the flashcard display when user is incorrect
+SetOfCards.prototype.renderIncorrect = function(){
+  $('.show-cards').append('<h4>Incorrect. The answer is ' + temp.answer +'.</h4>');
+};
+
+//for true -- $('.show-cards').append('<h4>Correct! The answer is ' + temp.answer +'.</h4>');
+
+//for false -- $('.show-cards').append('<h4>Incorrect. The answer is ' + temp.answer +'.</h4>');
+
+
+
+
+
+//Master set for ALL cards
+var allFlashCards = new MasterCardSet("All Flash Cards");
+
+//Master set for all USER CREATED cards
+var userCards = new MasterCardSet("User Cards");
+
+//hard-coded card-sets
+var javaScript = new SetOfCards("JavaScript");
+
+javaScript.cards = [
   {question:"q1", answer: "a1"},
   {question: "q2", answer: "a2"},
   {question: "q3", answer: "a3"},
@@ -86,52 +148,7 @@ basicMath.cards = [
   {question:"What is 2 / 2?", answer:"1"},
 ];
 
+//adding hard coded flash cards to master set
+allFlashCards.addSet(javaScript);
+allFlashCards.addSet(basicMath);
 
-//need to create a new SetOfCards before starting to create the cards...add a button for this, and then show the form for adding questions.
-
-//need checkboxes for flashcard sets that are hardcoded.
-
-//need to be able to add a new set to the checkboxes
-
-//STRETCH add a way to shuffle them all
-
-
-
-$(document).on('ready', function() {
-
-  //click on first button, shows the create cards form and hides the first button
-  $('#initial').on('click', function(event){
-    event.preventDefault();
-    // $('#create-cards').show();
-    // $('#initial').hide();
-  });
-
-   //when create card button clicked, hide the form and show the double buttons div(what if I need to show the buttons individually?? added class to each button and will test)
-   $('#create-card-btn').on('click', function(event){
-    event.preventDefault();
-    // $('#create-cards').hide();
-    // $('.make-or-begin').show();
-
-  });
-
-   //if user chooses to make another question, the double buttons get hidden, and the form appears again
-   $('#make-another').on('click', function(event){
-    event.preventDefault();
-    // $('.make-or-begin').hide();
-    // $('#create-cards').show();
-
-   });
-
-   $('#begin-review').on('click', function(event){
-    event.preventDefault();
-    // $(".make-or-begin").hide();
-
-   });
-
-
-
-  //for later - for getting question answer fields
-  //$('input[type=text]').val();
-
-
-});

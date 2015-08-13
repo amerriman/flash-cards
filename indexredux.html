@@ -41,9 +41,11 @@
     <!-- Screen 4 choose a pre-made card set-->
     <div>
       <h2>Choose a card set</h2>
-      <label class="checkbox-inline"><input type="checkbox" value="">JavaScript</label>
-      <label class="checkbox-inline"><input type="checkbox" value="">Basic Math</label>
-      <button type="submit" class="btn btn-info btn-lg btn-block begin-review">Begin Review</button>
+      <div id="cardsets">
+        <label class="checkbox-inline"><input type="checkbox" value="JavaScript">JavaScript</label>
+        <label class="checkbox-inline"><input type="checkbox" value="Basic Math">Basic Math</label>
+      </div>
+      <button type="submit" class="btn btn-info btn-lg btn-block" id="check-box-start">Begin Review</button>
     </div>
 
 
@@ -53,6 +55,7 @@
       <label class="col-md-2 control-label">User Input Answer Here</label>
       <input type="text" class="form-control" id="user-answer" placeholder="Type answer here...">
       <button type="submit" id="submit-user-answer" class="btn btn-success">Check Answer!</button>
+      <button type="submit" id="next_question" class="btn btn-success">Next Question</button>
     </div>
 
 
@@ -62,6 +65,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/utility.js"></script>
+    <script type="text/javascript" src="js/dom.js"></script>
   </body>
 </html>
 
