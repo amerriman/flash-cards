@@ -1,13 +1,13 @@
 //Global variables - can I make these go away?
 
 //This holds the array of questions that the user has chosen with the checkbox
-var chosenCardSet;
+var chosenCardSet = [];
 
 //This holds the current card object that the user is reviewing
-var temp =[];
+var currentQuestion =[];
 
 //This is the shuffled array of cards that will be eventually destroyed as the user goes through the review
-var cardArrayForScreen = [];
+var currentReview = [];
 
 //holding cell while new flashcard arrays are being created
 var tempHold = [];
@@ -47,79 +47,67 @@ SetOfCards.prototype.addCard = function(card){
   this.cards.push(card);
 };
 
-//when user chooses from already created sets, after they choose the checkbox and click to begin the review, this searches the 'allFlashCards' set to find the correct set of questions. When it finds the set, it puts it into the 'chosenArray' variable
-function findMatchingCardSet(checked){
-  for(i = 0; i < allFlashCards.cardSets.length; i++){
-    if(allFlashCards.cardSets[i].name === checked){
-      chosenCardSet = allFlashCards.cardSets[i];
-      console.log(chosenCardSet);
-     return chosenCardSet;
 
-    }
-  }
+
+//take the first card off the shuffled array and store it in another global variable.  Also, clear the screen and append the question to the screen
+// SetOfCards.prototype.showCards = function(arr){
+//   if (arr.length >= 1){
+//     currentQuestion = arr.shift(arr[0]);
+//     $('.show-cards').append('<h4>' + currentQuestion.question+'</h4>');
+//     //return currentQuestion; I don't think I need this
+//   }
+//   else{
+//     $('.show-cards').append('<h4>All done!</h4>');
+//     $('#submit-answer').css('display', 'none');
+//     $('#review-again').css('display', 'block');
+//   }
+// };
+
+
+function showCards(arr){
+  console.log(arr[0], "arr0");
+    currentQuestion = arr.shift(arr[0]);
+    $('.show-cards').html(currentQuestion.question);
 }
 
 
-//when user chooses set:
-//make a copy of the set, and shuffle it, and assign it to a global variable array (cardArrayForScreen)
-SetOfCards.prototype.shuffle = function(arr){
-  var result = [];
-  var workA = arr;
-  while(workA.length > 0) {
-    var random = Math.floor(Math.random() * workA.length);
-    result.push(workA.splice(random,1)[0]);
-    cardArrayForScreen = result;
-  }
-  return cardArrayForScreen;
-};
-
-//take the first card off the shuffled array and store it in another global variable.  Also, clear the screen and append the question to the screen
-SetOfCards.prototype.showCards = function(arr){
-  if (arr.length >= 1){
-    temp = arr.shift(arr[0]);
-    $('.show-cards').append('<h4>' + temp.question+'</h4>');
-    return temp;
-  }
-  else{
-    $('.show-cards').append('<h4>All done!</h4>');
-    console.log("ALL DONE!");
-  }
-};
-
-
 //checks if answer is correct - shows user the correct answer.  If incorrect, pushes flashcard back into the array to be shown again. !!!!need to make this go to a random place in the array.
-SetOfCards.prototype.compareAnswers = function(userInput){
-  if(userInput === ''){
-    alert("please enter an answer");
-  }
-  else if(userInput === temp.answer){
-    this.renderCorrect();
-    return true;
-  }
-  else {
-    this.renderIncorrect();
-    //when answer is incorrect, card is returned to the array to be used again
-    cardArrayForScreen.push(temp);
-    return false;
-  }
-};
-
-
-//appends answer and message to the flashcard display when user is correct
-SetOfCards.prototype.renderCorrect = function(){
-  $('.show-cards').append('<h4>Correct! The answer is ' + temp.answer +'.</h4>');
-};
+// SetOfCards.prototype.compareAnswers = function(userInput){
+//   if(!userInput){
+//     //don't let the input be blank!
+//     showAlert("Oh snap! You need to enter an answer!");
+//   }
+//   else if(userInput === currentQuestion.answer){
+//     console.log(this);
+//     this.renderCorrect();
+//     return true;
+//   }
+//   else {
+//     this.renderIncorrect();
+//     //when answer is incorrect, card is returned to the array to be used again
+//     currentReview.push(currentQuestion);
+//     return false;
+//   }
+// };
 
 
 
-//appends message and answer to the flashcard display when user is incorrect
-SetOfCards.prototype.renderIncorrect = function(){
-  $('.show-cards').append('<h4>Incorrect. The answer is ' + temp.answer +'.</h4>');
-};
+// //appends answer and message to the flashcard display when user is correct
+// SetOfCards.prototype.renderCorrect = function(){
+//   $('.show-cards').append('<h4>Correct! The answer is ' + currentQuestion.answer +'.</h4>');
+// };
 
-//for true -- $('.show-cards').append('<h4>Correct! The answer is ' + temp.answer +'.</h4>');
 
-//for false -- $('.show-cards').append('<h4>Incorrect. The answer is ' + temp.answer +'.</h4>');
+
+// //appends message and answer to the flashcard display when user is incorrect
+// SetOfCards.prototype.renderIncorrect = function(){
+
+//   $('.show-cards').append('<h4>Incorrect. The answer is ' + currentQuestion.answer +'.</h4>');
+// };
+
+//for true -- $('.show-cards').append('<h4>Correct! The answer is ' + currentQuestion.answer +'.</h4>');
+
+//for false -- $('.show-cards').append('<h4>Incorrect. The answer is ' + currentQuestion.answer +'.</h4>');
 
 
 
