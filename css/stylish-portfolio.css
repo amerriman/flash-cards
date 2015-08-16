@@ -13,6 +13,8 @@ body {
 }
 
 body {
+    padding-top: 50px;
+        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
     font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
     position: relative;
 }
@@ -159,6 +161,9 @@ body {
 hr.small {
     max-width: 100px;
 }
+/*nav bzr*/
+
+
 
 /* Side Menu */
 
@@ -178,6 +183,24 @@ hr.small {
     transition: all 0.4s ease 0s;
 }
 
+
+
+#menu-toggle {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+#sidebar-wrapper.active {
+    right: 250px;
+    width: 250px;
+    -webkit-transition: all 0.4s ease 0s;
+    -moz-transition: all 0.4s ease 0s;
+    -ms-transition: all 0.4s ease 0s;
+    -o-transition: all 0.4s ease 0s;
+    transition: all 0.4s ease 0s;
+}
 
 .toggle {
     margin: 5px 5px 0 0;
