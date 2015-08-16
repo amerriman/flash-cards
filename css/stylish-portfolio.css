@@ -48,38 +48,18 @@ body {
 #review-space {
   display: none;
 }
-/*
-#show-cards-wrapper {
-  height: 25em;
-  position: relative;
-  border: 1px solid white;
-  border-radius: 10px;
-  color: teal;
-
-}*/
 
 .show-cards p {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
- /* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);*/
-  /*border: 1px solid white;
-  border-radius: 10px;*/
+  padding: 5%;
   width: 100%;
-  /*color: teal;*/
   font-size: 40px;
 }
 
-/*.flip {
-    -webkit-perspective: 800px;
-    might have to remove below
-    position: relative;
-}*/
-
-.flip #show-card-wrapper .flipped {
+/*.flip #show-card-wrapper */
+.flipped {
     -webkit-transform: rotatex(-180deg);
 }
 
@@ -87,13 +67,6 @@ body {
     width: 100%;
     height: 200px;
     -webkit-perspective: 800px;
-   /* -webkit-transform-style: preserve-3d;
-    -webkit-transition: transform 0.5s;*/
-    /*height: 200px;*/
-    /*position: relative;*/
-    /*border: 1px solid white;
-    border-radius: 10px;*/
-    /*color: teal;*/
 }
 
 .flip #show-cards-wrapper .show-cards{
@@ -205,68 +178,6 @@ hr.small {
     transition: all 0.4s ease 0s;
 }
 
-.sidebar-nav {
-    position: absolute;
-    top: 0;
-    width: 250px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.sidebar-nav li {
-    text-indent: 20px;
-    line-height: 40px;
-}
-
-.sidebar-nav li a {
-    display: block;
-    text-decoration: none;
-    color: #999;
-}
-
-.sidebar-nav li a:hover {
-    text-decoration: none;
-    color: #fff;
-    background: rgba(255,255,255,0.2);
-}
-
-.sidebar-nav li a:active,
-.sidebar-nav li a:focus {
-    text-decoration: none;
-}
-
-.sidebar-nav > .sidebar-brand {
-    height: 55px;
-    font-size: 18px;
-    line-height: 55px;
-}
-
-.sidebar-nav > .sidebar-brand a {
-    color: #999;
-}
-
-.sidebar-nav > .sidebar-brand a:hover {
-    color: #fff;
-    background: none;
-}
-
-#menu-toggle {
-    z-index: 1;
-    position: fixed;
-    top: 0;
-    right: 0;
-}
-
-#sidebar-wrapper.active {
-    right: 250px;
-    width: 250px;
-    -webkit-transition: all 0.4s ease 0s;
-    -moz-transition: all 0.4s ease 0s;
-    -ms-transition: all 0.4s ease 0s;
-    -o-transition: all 0.4s ease 0s;
-    transition: all 0.4s ease 0s;
-}
 
 .toggle {
     margin: 5px 5px 0 0;

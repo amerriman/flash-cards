@@ -36,39 +36,39 @@
 
 <body>
 
-    <!-- Navigation -->
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
-    <nav id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
-            <li class="sidebar-brand">
-                <a href="#top"  onclick = $("#menu-close").click(); >HELLO!</a>
-            </li>
-            <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Start Over</a>
-            </li>
-            <li>
-                <a href="#about" onclick = $("#menu-close").click(); >Flash Card Sets</a>
-            </li>
-        <!--     <li>
-                <a href="#services" onclick = $("#menu-close").click(); >Services</a>
-            </li>
-            <li>
-                <a href="#portfolio" onclick = $("#menu-close").click(); >Portfolio</a>
-            </li>
-            <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >Contact</a>
-            </li> -->
-        </ul>
+<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">FlashCards!</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Card Sets</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
     </nav>
 
-    <!-- Header -->
+
+    <!-- Header - functioning as main staging area -->
     <header id="top" class="header">
         <div class="text-vertical-center">
-            <!-- <h1>Start Bootstrap</h1>
-            <h3>Free Bootstrap Themes &amp; Templates</h3>
-            <br>
-            <a href="#about" class="btn btn-dark btn-lg">Find Out More</a> -->
             <div class="initial">
                 <h1>Get your study on!</h1>
                 <h3>What would you like to do?</h3>
@@ -81,139 +81,134 @@
                     <h1 class="text-center">Choose a card set</h1>
                 </div>
                 <div class="form-group">
-                <div class=" form-group-lg" id="cardsets">
-                <label class="radio-inline"><input type="radio" value="JavaScript">JavaScript</label>
-                <label class="radio-inline"><input type="radio" value="Basic Math">Basic Math</label>
-                </div>
-                <div class="alert_placeholder col-md-4 col-md-offset-4"></div>
-                <div class="form-group">
-                <div class="col-md-6 col-md-offset-3 text-center">
-                <button type="submit" class="btn btn-info btn-lg" id="check-box-start">Begin Review</button>
-                </div>
-                </div>
+                        <div class=" form-group-lg" id="cardsets">
+                            <label class="radio-inline"><input type="radio" value="JavaScript">JavaScript</label>
+                            <label class="radio-inline"><input type="radio" value="Basic Math">Basic Math</label>
+                        </div>
+                    <div class="alert_placeholder col-md-4 col-md-offset-4"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3 text-center">
+                            <button type="submit" class="btn btn-info btn-lg" id="check-box-start">Begin Review</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-           <form id="create-cardset-title">
-            <div class="row form">
-              <div class="text-center">
-                <h2>Create a Title</h2>
-              </div>
-              <div class="col-md-4 col-md-offset-4 alert_placeholder"></div>
-              <div class="form-group col-md-6 col-md-offset-3">
-                <input type="text" class="form-control" id="new-title" placeholder="Create a title for your flash cards" required>
-              </div>
-              <div class="col-md-6 col-md-offset-3 text-center">
-                <button type="submit" class="btn btn-info btn-lg" id="create-cardset-btn">Create Flashcard Set!</button>
-              </div>
-            </div>
+            <form id="create-cardset-title">
+                <div class="row form">
+                    <div class="text-center">
+                        <h2>Create a Title</h2>
+                    </div>
+                    <div class="col-md-4 col-md-offset-4 alert_placeholder"></div>
+                    <div class="form-group col-md-6 col-md-offset-3">
+                        <input type="text" class="form-control" id="new-title" placeholder="Create a title for your flash cards" required>
+                    </div>
+                    <div class="col-md-6 col-md-offset-3 text-center">
+                        <button type="submit" class="btn btn-info btn-lg" id="create-cardset-btn">Create Flashcard Set!</button>
+                    </div>
+                </div>
             </form>
 
 
-        <div id="review-space">
-            <div class="row form-group">
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="flip" id="show-cards-main">
-                    <div id="show-cards-wrapper">
-                        <div class="show-cards show-cards-question"></div>
-                        <div class="show-cards show-cards-answer"></div>
-                    </div>
-                    </div>
-                </div>
-            </div>
-        <div class="row ">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped active" role="progressbar"
-                  aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-                    40%
+            <div id="review-space">
+                <div class="row form-group">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="flip" id="show-cards-main">
+                        <div id="show-cards-wrapper">
+                            <div class="show-cards show-cards-question"></div>
+                            <div class="show-cards show-cards-answer"></div>
+                        </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-            <form id="submit-answer">
-                <div class="form-group form-horizontal">
-                    <label class="col-md-4  control-label">User Input Answer Here</label>
-                  <div class="col-md-4">
-                    <input type="text" class="form-control" id="user-answer" placeholder="Type answer here..." required>
-                  </div>
+                <div class="row ">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar"
+                          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                            40%
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="row" id="submit-user-answer">
+
+
+
+                <form id="submit-answer">
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-4  control-label">User Input Answer Here</label>
+                      <div class="col-md-4">
+                        <input type="text" class="form-control" id="user-answer" placeholder="Type answer here..." required>
+                      </div>
+                    </div>
+
+                    <div class="row" id="submit-user-answer">
+                        <div class="final-buttons form-group text-center">
+                        <button type="submit" id="submit-user-answer-btn" class="btn btn-info btn-lg">Check Answer!</button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="row" id="next-question">
                     <div class="final-buttons form-group text-center">
-                    <button type="submit" id="submit-user-answer-btn" class="btn btn-info btn-lg">Check Answer!</button>
+                        <button type="submit" id="next_question-btn" class="btn btn-info btn-lg">Next Question</button>
                     </div>
                 </div>
-
-            </form>
-
-            <div class="row" id="next-question">
-                <div class="final-buttons form-group text-center">
-                    <button type="submit" id="next_question-btn" class="btn btn-info btn-lg">Next Question</button>
+                <div class="row" id="study-more">
+                    <div class="final-buttons form-group text-center">
+                        <button type="submit" id="study-more-btn" class="btn btn-success">Study More</button>
+                    </div>
                 </div>
             </div>
-            <div class="row" id="study-more">
-                <div class="final-buttons form-group text-center">
-                    <button type="submit" id="study-more-btn" class="btn btn-success">Study More</button>
-                </div>
-            </div>
-        </div>
-
-
-<!-- temporary positioning -->
-       <!--  <div class="row">
-            <button type="submit" id="next_question" class="btn btn-info btn-lg">Next Question</button>
-        </div> -->
-
-
-
 
         </div>
         <!-- <div class="text-vertical-center" -->
 
         <form class="form-horizontal" id="create-cards-container">
-          <div class="row">
-            <div class="col-md-5" id="create-q-and-a">
-              <h2 class="text-center">Create a Question</h2>
-              <div class="form-group">
-                <label for="createQuestion" class="col-md-2 control-label">Question</label>
-                <div class="col-md-8">
-                  <input type="text" class="form-control" id="question" placeholder="Question" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <label for="createAnswer" class="col-md-2 control-label">Answer</label>
-                <div class="col-md-8">
-                  <input type="text" class="form-control" id="answer" placeholder="Answer" required>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                  <button type="submit" class="btn btn-info btn-lg" id="create-card-btn">Create Flashcard!</button>
-                 </div>
-              </div>
-            </div>
-            <div class="col-md-7">
-                <div id="q-a-table-with-review-button">
-                <table class="table table-bordered" id="card-table">
-                  <caption class="new-cardset">Flashcard Set Title here</caption>
-                  <tbody class="striped">
-                   <tr>
-                    <th>Question</th>
-                    <th>Answer</th>
-                  </tr>
-                  </tbody>
-                </table>
-                <div class="form-group">
-                  <div class="row col-md-12">
-                    <div class="col-md-offset-4 col-md-4">
-                       <button type="submit" class="btn btn-info btn-lg btn-block begin-review" id="new-set-begin">Begin Review</button>
+            <div class="row">
+                <div class="col-md-5" id="create-q-and-a">
+                    <h2 class="text-center">Create a Question</h2>
+                    <div class="form-group">
+                        <label for="createQuestion" class="col-md-2 control-label">Question</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="question" placeholder="Question" required>
+                        </div>
                     </div>
-                  </div>
+                    <div class="form-group">
+                        <label for="createAnswer" class="col-md-2 control-label">Answer</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" id="answer" placeholder="Answer" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-info btn-lg" id="create-card-btn">Create Flashcard!</button>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="col-md-7">
+                    <div id="q-a-table-with-review-button">
+                        <table class="table table-bordered" id="card-table">
+                            <caption class="new-cardset">Flashcard Set Title here</caption>
+                            <tbody class="striped">
+                                <tr>
+                                    <th>Question</th>
+                                    <th>Answer</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="form-group">
+                            <div class="row col-md-12">
+                                <div class="col-md-offset-4 col-md-4">
+                                    <button type="submit" class="btn btn-info btn-lg btn-block begin-review" id="new-set-begin">Begin Review</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </form>
 
 
@@ -312,75 +307,7 @@
         </div>
     </aside>
  -->
-    <!-- Portfolio -->
-    <!-- <section id="portfolio" class="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-10 col-lg-offset-1 text-center">
-                    <h2>Our Work</h2>
-                    <hr class="small">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-1.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-2.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-3.jpg">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="portfolio-item">
-                                <a href="#">
-                                    <img class="img-portfolio img-responsive" src="img/portfolio-4.jpg">
-                                </a>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- /.row (nested) -->
-                    <!-- <a href="#" class="btn btn-dark">View More Items</a>
-                </div> -->
-                <!-- /.col-lg-10 -->
-            <!-- </div> -->
-            <!-- /.row -->
-        <!-- </div> -->
-        <!-- /.container -->
-    <!-- </section> -->
 
-    <!-- Call to Action -->
-    <!-- <aside class="call-to-action bg-primary">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h3>The buttons below are impossible to resist.</h3>
-                    <a href="#" class="btn btn-lg btn-light">Click Me!</a>
-                    <a href="#" class="btn btn-lg btn-dark">Look at Me!</a>
-                </div>
-            </div>
-        </div>
-    </aside>
- -->
-    <!-- Map -->
-    <!-- <section id="contact" class="map">
-        <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
-        <br />
-        <small>
-            <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
-        </small>
-        </iframe>
-    </section> -->
 
     <!-- Footer -->
     <!-- <footer>

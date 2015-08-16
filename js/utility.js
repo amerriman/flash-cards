@@ -1,15 +1,16 @@
-//adds alert in case of user-input error
+//adds pop-up bootstrap alert in case of user-input error
 function showAlert(message) {
-  //$('#alert_placeholder').html("test");
   $('.alert_placeholder').append('<div id="alertdiv" class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>');
 
-  setTimeout(function() { // this will automatically close the alert and remove this if the users doesn't close it in 5 secs
+  // this will automatically close the alert and remove this if the users doesn't close it in 5 secs
+  setTimeout(function() {
     $("#alertdiv").remove();
   }, 5000);
 }
 
 
-//when user chooses from already created sets, after they choose the checkbox and click to begin the review, this searches the 'allFlashCards' set to find the correct set of questions. When it finds the set, it puts it into the 'chosenArray' variable
+//Find user chosenset of flash cards in the master flash card array
+//Creates a copy of flash cards into 'chosenArray'
 function findMatchingCardSet(checked){
   for(i = 0; i < allFlashCards.cardSets.length; i++){
     if(allFlashCards.cardSets[i].name === checked){
@@ -21,7 +22,7 @@ function findMatchingCardSet(checked){
 
 
 //when user chooses set:
-//make a copy of the set, and shuffle it, and assign it to a global variable array (currentReview)
+//shuffle it, and assign it to a global variable array (currentReview)
 function shuffle(arr){
   var result = [];
   var workA = arr;
@@ -33,8 +34,14 @@ function shuffle(arr){
   return currentReview;
 }
 
+//Shifts first 'card' off array and appends it to the flashcard space for user to see
+function showCards(arr){
+  console.log(arr[0], "arr0");
+    currentQuestion = arr.shift(arr[0]);
+    $('.show-cards-question').append('<p>' + currentQuestion.question + '</p>');
+}
 
-
+//checks user input answer against card answer
 function compareAnswers(userInput){
   if(userInput === currentQuestion.answer){
     renderCorrect();

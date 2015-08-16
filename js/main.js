@@ -1,5 +1,3 @@
-//Global variables - can I make these go away?
-
 //This holds the array of questions that the user has chosen with the checkbox
 var chosenCardSet = [];
 
@@ -15,10 +13,12 @@ var tempHold = [];
 
 
 ///BASE CONSTRUCTORS
+
 function Card(question, answer){
   this.question = question;
   this.answer = answer;
 }
+
 
 function SetOfCards(name){
   this.name = name;
@@ -28,7 +28,6 @@ function SetOfCards(name){
 function MasterCardSet(name){
   this.name = name;
   this.cardSets = [];
-
 }
 
 
@@ -46,70 +45,6 @@ MasterCardSet.prototype.addSet = function(setName){
 SetOfCards.prototype.addCard = function(card){
   this.cards.push(card);
 };
-
-
-
-//take the first card off the shuffled array and store it in another global variable.  Also, clear the screen and append the question to the screen
-// SetOfCards.prototype.showCards = function(arr){
-//   if (arr.length >= 1){
-//     currentQuestion = arr.shift(arr[0]);
-//     $('.show-cards').append('<h4>' + currentQuestion.question+'</h4>');
-//     //return currentQuestion; I don't think I need this
-//   }
-//   else{
-//     $('.show-cards').append('<h4>All done!</h4>');
-//     $('#submit-answer').css('display', 'none');
-//     $('#review-again').css('display', 'block');
-//   }
-// };
-
-
-function showCards(arr){
-  console.log(arr[0], "arr0");
-    currentQuestion = arr.shift(arr[0]);
-    $('.show-cards-question').append('<p>' + currentQuestion.question + '</p>');
-}
-
-
-//checks if answer is correct - shows user the correct answer.  If incorrect, pushes flashcard back into the array to be shown again. !!!!need to make this go to a random place in the array.
-// SetOfCards.prototype.compareAnswers = function(userInput){
-//   if(!userInput){
-//     //don't let the input be blank!
-//     showAlert("Oh snap! You need to enter an answer!");
-//   }
-//   else if(userInput === currentQuestion.answer){
-//     console.log(this);
-//     this.renderCorrect();
-//     return true;
-//   }
-//   else {
-//     this.renderIncorrect();
-//     //when answer is incorrect, card is returned to the array to be used again
-//     currentReview.push(currentQuestion);
-//     return false;
-//   }
-// };
-
-
-
-// //appends answer and message to the flashcard display when user is correct
-// SetOfCards.prototype.renderCorrect = function(){
-//   $('.show-cards').append('<h4>Correct! The answer is ' + currentQuestion.answer +'.</h4>');
-// };
-
-
-
-// //appends message and answer to the flashcard display when user is incorrect
-// SetOfCards.prototype.renderIncorrect = function(){
-
-//   $('.show-cards').append('<h4>Incorrect. The answer is ' + currentQuestion.answer +'.</h4>');
-// };
-
-//for true -- $('.show-cards').append('<h4>Correct! The answer is ' + currentQuestion.answer +'.</h4>');
-
-//for false -- $('.show-cards').append('<h4>Incorrect. The answer is ' + currentQuestion.answer +'.</h4>');
-
-
 
 
 
