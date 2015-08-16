@@ -50,10 +50,10 @@ function compareAnswers(userInput){
 
 //appends answer and message to the flashcard display when user is correct
 function renderCorrect(){
-  $('.show-cards').append('Correct! The answer to ' + currentQuestion.question + ' is ' + currentQuestion.answer);
+  $('.show-cards-answer').append('<p>Correct! The answer to "' + currentQuestion.question + '" is ' + currentQuestion.answer + '</p>');
 }
 
 //appends message and answer to the flashcard display when user is incorrect
 function renderIncorrect(){
-  $('.show-cards').html('Incorrect. The answer to ' + currentQuestion.question + ' is ' + currentQuestion.answer);
+  $('.show-cards-answer').append('<p>Incorrect. The answer to "' + currentQuestion.question + '" is ' + currentQuestion.answer + '</p>');
 }

@@ -14,21 +14,16 @@ body {
 
 body {
     font-family: "Source Sans Pro","Helvetica Neue",Helvetica,Arial,sans-serif;
+    position: relative;
 }
 
 .form-group{
   padding-top: 10px;
 }
 
-
-
 .final-buttons{
   clear: left;
 }
-/*
-.text-center{
-  margin-top: 10px;
-}*/
 
 .text-vertical-center .initial{
   border: none;
@@ -53,23 +48,86 @@ body {
 #review-space {
   display: none;
 }
-
+/*
 #show-cards-wrapper {
-    height: 150px;
-    position: relative;
-    border: 1px solid white;
-  border-radius: 10px;
-  color: teal;
-}
-
-.show-cards {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  height: 25em;
+  position: relative;
   border: 1px solid white;
   border-radius: 10px;
   color: teal;
+
+}*/
+
+.show-cards p {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+ /* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);*/
+  /*border: 1px solid white;
+  border-radius: 10px;*/
+  width: 100%;
+  /*color: teal;*/
+  font-size: 40px;
+}
+
+/*.flip {
+    -webkit-perspective: 800px;
+    might have to remove below
+    position: relative;
+}*/
+
+.flip #show-card-wrapper .flipped {
+    -webkit-transform: rotatex(-180deg);
+}
+
+.flip #show-cards-wrapper{
+    width: 100%;
+    height: 200px;
+    -webkit-perspective: 800px;
+   /* -webkit-transform-style: preserve-3d;
+    -webkit-transition: transform 0.5s;*/
+    /*height: 200px;*/
+    /*position: relative;*/
+    /*border: 1px solid white;
+    border-radius: 10px;*/
+    /*color: teal;*/
+}
+
+.flip #show-cards-wrapper .show-cards{
+    width: 100%;
+    height: 200px;
+    position: absolute;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: transform 0.5s;
+    -webkit-backface-visibility: hidden;
+    z-index: 2;
+    overflow: hidden;
+    position: absolute;
+    border-radius: 10px
+}
+
+.flip #show-cards-wrapper .show-cards-question {
+    position: absolute;
+    z-index: 1;
+    background: white;
+    color: black;
+}
+/*.flip #show-cards-wrapper*/
+ .show-cards-answer {
+   transform: rotateX(180deg);
+   background: white;
+   color: black;
+}
+
+.flipped .show-cards-question{
+  transform: rotateX(-180deg);
+}
+
+.flipped .show-cards-answer{
+    transform: rotateX(0);
 }
 
 #study-more {

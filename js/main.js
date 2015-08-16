@@ -67,7 +67,7 @@ SetOfCards.prototype.addCard = function(card){
 function showCards(arr){
   console.log(arr[0], "arr0");
     currentQuestion = arr.shift(arr[0]);
-    $('.show-cards').html(currentQuestion.question);
+    $('.show-cards-question').append('<p>' + currentQuestion.question + '</p>');
 }
 
 

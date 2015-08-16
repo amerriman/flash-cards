@@ -22,6 +22,8 @@ $(document).on('ready', function() {
   //click on the 'Begin Review' button shuffles the flashcards and displays the first question
   $('#new-set-begin').on('click', function(event){
     event.preventDefault();
+
+
     //adds user created flashcards to main card array(s)
     chosenCardSet = tempHold.cards.slice(0);
     allFlashCards.addSet(tempHold);
@@ -29,6 +31,8 @@ $(document).on('ready', function() {
     //starts the review with the most recently created set.
     shuffle(chosenCardSet);
     showCards(currentReview);
+    $('.display-to-user').remove();
+
    });
 
 
@@ -53,10 +57,13 @@ $(document).on('ready', function() {
   $('#submit-answer').on('submit', function(event){
     event.preventDefault();
     var userAnswer = $('#user-answer').val();
-    $('.show-cards').html('');
+    $('.show-cards-question').html('');
     compareAnswers(userAnswer);
     //clears user answer space and the flashcard space
     $('#user-answer').val('');
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    $('.flip').addClass('flipped');
+    $('#show-cards-wrapper').addClass('flipped');
 
     //hide button and show next q button
     $('#submit-answer').css('display', 'none');
@@ -65,9 +72,17 @@ $(document).on('ready', function() {
 
 
 
+
+
   //"Next Question button clears the card field and shows the next question"
   $('#next_question-btn').on('click', function(){
     $('.show-cards').html(" ");
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  $('#show-cards-main').removeClass('flipped');
+    $('#show-cards-wrapper').removeClass('flipped');
+
+
     if(currentReview.length >= 1){
       showCards(currentReview);
       //hide button and show submit answer button
@@ -75,7 +90,7 @@ $(document).on('ready', function() {
       $('#submit-answer').css('display','block');
     }
     else{
-      $('.show-cards').html("All done!");
+      $('.show-cards-question').append("<p>All done!</p>");
       $('#submit-answer').css('display', 'none');
       $('#next-question').css('display', 'none');
       $('#study-more').css('display', 'block');
@@ -84,13 +99,13 @@ $(document).on('ready', function() {
   });
 
   //if user clicks "study more", they are directed 'home'
-  $('#study-more-btn').on('click', function(){
+  $('#study-more-btn #start-over').on('click', function(){
     console.log("ARAREARWER");
 
     $('#submit-answer').css('display','block');
     $('.show-cards').html("");
     $('#next-question').css('display', 'none');
-    //$('#study-more-btn').css('display', 'none');
+    $('#study-more').css('display', 'none');
     $('#review-space').css('display', 'none');
     $('.initial').css('display', 'block');
   });
@@ -145,7 +160,7 @@ $(document).on('ready', function() {
     console.log(newCard, 'newcard after card created');
     // adds data to dom
     $('#card-table').append(
-      "<tr>" +
+      "<tr class='display-to-user'>" +
           "<td>" + newQuestion + "</td>" +
           "<td>" + newAnswer + "</td>" +
         "</tr>"
