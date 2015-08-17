@@ -21,7 +21,7 @@ $(document).on('ready', function() {
     //creates new instance of SetOfCards with user title
     var newTitle = new SetOfCards(userInputtedTitle);
     //adds the new cardset title to the already created cards section
-    $('#cardsets').append('<label class="radio-inline">' + '<input type="radio" value="'+ userInputtedTitle + '">' + newTitle.name + '</label');
+    $('#cardsets').append('<label class="radio-inline bigger">' + '<img class="radio-icons" src="img/user.png" height="75px" width="75px" alt="user-created">' + '<br>' + '<input type="radio" value="'+ userInputtedTitle + '">' + newTitle.name + '</label');
     //holds the new cardset temporarily so we can add cards to it
     tempHold = newTitle;
     // removes the "create a title" div and displays the 'create questions and answers' div

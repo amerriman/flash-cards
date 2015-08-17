@@ -1,5 +1,19 @@
 //////////DETAILS////////////
 
+**Make the image clickable - with a title="blah blah" in the p tag.
+have the click event on the p and use the title tag to make it identify.
+
+then need to change the creation of the new cardset so it appends one image and adds the p and title etc.
+
+** make a delete card option on the flashcard thing - like a button next to the rows
+
+change the card title to go into the table title?
+
+Make it only able to select one radio at a time
+
+
+
+
   *when array is done, immediately put the celebrate!
     in celebrate screen
 

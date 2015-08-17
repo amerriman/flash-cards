@@ -74,4 +74,3 @@ basicMath.cards = [
 //adding hard coded flash cards to master set
 allFlashCards.addSet(javaScript);
 allFlashCards.addSet(basicMath);
-

@@ -1,0 +1,44 @@
+
+
+
+
+
+
+
+
+
+
+                        <label class="radio-inline bigger">
+                        <img class="radio-icons" src="img/brain_on_fire.jpg" height="75px" width="75px" alt="flowers">
+                        <br>
+                        <input type="radio" name="flashcard-choice" value="JavaScript">
+                        JavaScript</label>
+
+                        <label class="radio-inline bigger">
+                        <img class="radio-icons" src="img/brain_on_fire.jpg" alt="flowers">
+                        <br>
+                        <input type="radio" name="flashcard-choice" value="Basic Math">Basic Math</label>
+
+
+.radio-icons {
+    border-radius: 50%;
+    height: 3.5em;
+    width: 3.5em;
+}
+
+label {
+    font-size: 175%
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -43,14 +43,16 @@ function showCards(arr){
 
 //checks user input answer against card answer
 function compareAnswers(userInput){
+  console.log(currentReview, "currentReview before actio")
   if(userInput === currentQuestion.answer){
     renderCorrect();
     return true;
   }
   else {
     renderIncorrect();
-    //when answer is incorrect, card is returned to the array to be used again
-    currentReview.push(currentQuestion);
+    //when answer is incorrect, card is returned to the array, at a random index, to be used again
+    var random = Math.floor(Math.random() * currentReview.length+1);
+    currentReview.splice(random, 0, currentQuestion);
     return false;
   }
 }
@@ -58,9 +60,11 @@ function compareAnswers(userInput){
 //appends answer and message to the flashcard display when user is correct
 function renderCorrect(){
   $('.show-cards-answer').append('<p>Correct! The answer to "' + currentQuestion.question + '" is ' + currentQuestion.answer + '</p>');
+  $('.show-cards-answer').css("color", "green");
 }
 
 //appends message and answer to the flashcard display when user is incorrect
 function renderIncorrect(){
   $('.show-cards-answer').append('<p>Incorrect. The answer to "' + currentQuestion.question + '" is ' + currentQuestion.answer + '</p>');
+  $('.show-cards-answer').css("color", "red");
 }

@@ -19,6 +19,16 @@ body {
     position: relative;
 }
 
+.radio-icons {
+    border-radius: 50%;
+    height: 3.5em;
+    width: 3.5em;
+}
+
+.bigger {
+    font-size: 175%
+}
+
 .form-group{
   padding-top: 10px;
 }
@@ -66,14 +76,16 @@ body {
 }
 
 .flip #show-cards-wrapper{
-    width: 100%;
-    height: 200px;
+    width: 90%;
+    height: 250px;
+    margin:5%;
     -webkit-perspective: 800px;
 }
 
 .flip #show-cards-wrapper .show-cards{
-    width: 100%;
-    height: 200px;
+    width: 90%;
+    height: 250px;
+    margin:5%;
     position: absolute;
     -webkit-transform-style: preserve-3d;
     -webkit-transition: transform 0.5s;
@@ -126,6 +138,14 @@ body {
     padding: 0;
     font-size: 4.5em;
     font-weight: 700;
+}
+
+#q-a-table-with-review-button{
+    margin-right: 10px;
+}
+
+input[type=checkbox], input[type=radio] {
+    margin-top: 10px
 }
 
 /* Custom Button Styles
@@ -213,7 +233,7 @@ hr.small {
     position: relative;
     width: 100%;
     height: 100%;
-    background: url(../img/bg.jpg) no-repeat center center scroll;
+    background: url(../img/blue.jpg) no-repeat center center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
