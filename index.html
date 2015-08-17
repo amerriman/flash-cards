@@ -47,17 +47,20 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><img  src="img/flashcards.png" height="50px" width="50px" alt="JavaScript"></a>
+                <a class="navbar-brand take-me-home" href="#"><img src="img/flashcards.png" height="50px" width="50px" id="nav-bar-icon" alt="JavaScript"></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                         <p class="navbar-clickers take-me-home">FLashCards Home!</p>
                     </li>
                     <li>
-                        <a href="#">Card Sets</a>
+                         <p class="navbar-clickers to-the-cards">Card Sets</p>
                     </li>
+                   <!--  <li>
+                        <p class="navbar-clickers">Card Sets</p>
+                    </li> -->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -72,11 +75,11 @@
             <div class="initial">
                 <h1>Get your study on!</h1>
                 <h3>What would you like to do?</h3>
-                <p><button type="submit" class="btn btn-info btn-lg " id="pre-made">Pick a Topic</button>
+                <p><button type="submit" class="btn btn-info btn-lg pre-made">Pick a Topic</button>
                 <button type="submit" class="btn btn-info btn-lg" id="create-own">Create Your Own</button></p>
             </div>
 
-            <div class="row" id="checkbox-space">
+            <div class="row begin-anew" id="checkbox-space">
                 <div class="col-md-12 text-center">
                     <h1 class="text-center">Choose a study topic</h1>
                 </div>
@@ -102,14 +105,14 @@
                 </div>
             </div>
 
-            <form id="create-cardset-title">
+            <form id="create-cardset-title" class="begin-anew">
                 <div class="row form">
                     <div class="text-center">
                         <h2>What Topic Would You Like Study?</h2>
                     </div>
                     <div class="col-md-4 col-md-offset-4 alert_placeholder"></div>
                     <div class="form-group col-md-6 col-md-offset-3">
-                        <input type="text" class="form-control" id="new-title" placeholder="Create a title for your flash card set" required>
+                        <input type="text" class="form-control clear-all" id="new-title" placeholder="Create a title for your flash card set" required>
                     </div>
                     <div class="col-md-6 col-md-offset-3 text-center">
                         <button type="submit" class="btn btn-info btn-lg" id="create-cardset-btn">Continue</button>
@@ -118,7 +121,7 @@
             </form>
 
 
-            <div id="review-space">
+            <div id="review-space" class="begin-anew">
                 <div class="row form-group">
                     <div class="col-md-6 col-md-offset-3">
                         <div class="flip" id="show-cards-main">
@@ -145,7 +148,7 @@
                     <div class="form-group form-horizontal">
                         <label class="col-md-4  control-label"></label>
                       <div class="col-md-4">
-                        <input type="text" class="form-control" id="user-answer" placeholder="Type answer here..." required>
+                        <input type="text" class="form-control clear-all" id="user-answer" placeholder="Type answer here..." required>
                       </div>
                     </div>
 
@@ -164,7 +167,7 @@
                 </div>
                 <div class="row" id="study-more">
                     <div class="final-buttons form-group text-center">
-                        <button type="submit" id="study-more-btn" class="btn btn-success">Study More</button>
+                        <button type="submit" class="btn btn-success" id="study-more-btn">Study More</button>
                     </div>
                 </div>
             </div>
@@ -172,20 +175,20 @@
         </div>
         <!-- <div class="text-vertical-center" -->
 
-        <form class="form-horizontal" id="create-cards-container">
+        <form class="form-horizontal begin-anew" id="create-cards-container">
             <div class="row">
                 <div class="col-md-5" id="create-q-and-a">
                     <h2 class="text-center">Create A Study Card</h2>
                     <div class="form-group">
                         <label for="createQuestion" class="col-md-2 control-label">Question</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="question" placeholder="Type the question here..." required>
+                            <input type="text" class="form-control clear-all" id="question" placeholder="Type the question here..." required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="createAnswer" class="col-md-2 control-label">Answer</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control" id="answer" placeholder="Type the answer here..." required>
+                            <input type="text" class="form-control clear-all" id="answer" placeholder="Type the answer here..." required>
                         </div>
                     </div>
                     <div class="form-group">

@@ -1,7 +1,6 @@
 //adds pop-up bootstrap alert in case of user-input error
 function showAlert(message) {
   $('.alert_placeholder').append('<div id="alertdiv" class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span>'+message+'</span></div>');
-
   // this will automatically close the alert and remove this if the users doesn't close it in 5 secs
   setTimeout(function() {
     $("#alertdiv").remove();

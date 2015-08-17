@@ -1,7 +1,7 @@
 $(document).on('ready', function() {
 
   //shows user pre-made card sets
-  $('#pre-made').on('click', function(){
+  $('.pre-made').on('click', function(){
     $('.initial').css('display', 'none');
     $('#checkbox-space').css('display','block');
   });
@@ -143,6 +143,33 @@ $(document).on('ready', function() {
     $('#review-space').css('display', 'none');
     $('.initial').css('display', 'block');
   });
+
+  //if user clicks on the 'FlashCards Home' in the nav bar - They are taken back to the main page and everything else is reset
+  $('.take-me-home').on('click', function(){
+    $('.begin-anew').css('display', 'none');
+    $('.clear-all').val('');
+    $('#show-cards-main').removeClass('flipped');
+    $('#show-cards-wrapper').removeClass('flipped');
+    $('.display-to-user').remove();
+    $('input[type="radio"]').prop('checked', false);
+    $('.show-cards').html(" ");
+    $('.initial').css('display', 'block');
+  })
+
+
+  //if the user clicks on the CardSets, everything is cleared and they go to the choose a cardset page
+   $('.to-the-cards').on('click', function(){
+    console.log("woot");
+    $('.initial').css('display', 'none');
+    $('.begin-anew').css('display', 'none');
+    $('.clear-all').val('');
+    $('#show-cards-main').removeClass('flipped');
+    $('#show-cards-wrapper').removeClass('flipped');
+    $('.display-to-user').remove();
+    $('input[type="radio"]').prop('checked', false);
+    $('.show-cards').html(" ");
+    $('#checkbox-space').css('display','block');
+  })
 
 
 });
