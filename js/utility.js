@@ -42,7 +42,7 @@ function showCards(arr){
 
 //checks user input answer against card answer
 function compareAnswers(userInput){
-  if(userInput === currentQuestion.answer){
+  if(userInput === currentQuestion.answer.toLowerCase()){
     renderCorrect();
     return true;
   }
@@ -67,14 +67,23 @@ function removeCard(question, answer){
 }
 
 //checks for
-function duplicateQuestionCheck(question, answer){
-  //console.log(question, answer, "question and answer")
-  for (var i = 0; i < tempHold.cards.length; i++){
-    if(question === tempHold.cards[i].question){
+function duplicateQuestionCheck(question, answer, array){
+  var tempHoldQuestionLC = ""
+  var questionLC = question.toLowerCase();
+  for (var i = 0; i < array.length; i++){
+
+
+
+    tempHoldQuestionLC = array[i].question.toLowerCase();
+
+    if(questionLC === tempHoldQuestionLC){
+
       $('#duplicate-question-alert').append('<div id="alertdiv" class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span>'+"It looks like you have already created that question!"+'</span></div>');
       setTimeout(function() {
         $("#alertdiv").remove();
       }, 4000);
+
+
     }
     else {
       //create the new card
@@ -87,8 +96,10 @@ function duplicateQuestionCheck(question, answer){
           "<td class='questions'>" + question + "</td>" +
           "<td class='answers'>" + answer + "</td>" +
           "<td>" + "<a href='#' class='delete'>delete</a>" + "</td>" +
-        "</tr>"
-      );
+        "</tr>");
+      //console.log(tempHold, "inside if")
+      return newCard;
+
     }
   }
 }

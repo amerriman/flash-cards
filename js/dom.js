@@ -37,34 +37,41 @@ $(document).on('ready', function() {
   //User creates new cards
   $('#create-cards-container').on('submit', function(event){
     event.preventDefault();
-    console.log("woot")
     //grab the user input questions and answers
     var newQuestion = $('#question').val();
     var newAnswer = $('#answer').val();
+    //////////////////////////take out if fail//////////
+    var questionLC = newQuestion.toLowerCase();
+    var arrayQLC;
+    ///////////////////////////////////
     //If this is the first card, push it to the array
     if(tempHold.cards.length === 0) {
-    //create the new card
-    var newCard = new Card(newQuestion, newAnswer);
-    //add the new card to the new set, which is currently living in a temporary holding variable.
-    tempHold.addCard(newCard);
-    // adds card data to dom in a table
-    $('#card-table').append(
-    "<tr class='display-to-user'>" +
-        "<td class='questions'>" + newQuestion + "</td>" +
-        "<td class='answers'>" + newAnswer + "</td>" +
-        "<td>" + "<a href='#' class='delete'>delete</a>" + "</td>" +
-      "</tr>"
-     );
-    // clear user inputs
-    $('#question').val('');
-    $('#answer').val('');
-    }
-    //checks for duplicate questions
-    else{
-      duplicateQuestionCheck(newQuestion, newAnswer);
+      //create the new card
+      var newCard = new Card(newQuestion, newAnswer);
+      //add the new card to the new set, which is currently living in a temporary holding variable.
+      tempHold.addCard(newCard);
+      // adds card data to dom in a table
+      $('#card-table').append(
+      "<tr class='display-to-user'>" +
+          "<td class='questions'>" + newQuestion + "</td>" +
+          "<td class='answers'>" + newAnswer + "</td>" +
+          "<td>" + "<a href='#' class='delete'>delete</a>" + "</td>" +
+        "</tr>"
+       );
+      // clear user inputs
       $('#question').val('');
       $('#answer').val('');
     }
+
+    ////////////////////////////////////////////////////////////
+    //checks for duplicate questions
+    else{
+      duplicateQuestionCheck(newQuestion, newAnswer, tempHold.cards);
+
+    }
+    $('#question').val('');
+      $('#answer').val('');
+    ////////////////////////////////////////////////////////////////
   });
 
   //remove a question from table and from card array
@@ -129,6 +136,7 @@ $(document).on('ready', function() {
   //when users submits with the 'Check Answer' button it checks the answer, and displays a correct, or incorect message.  Also clears the user input field.  Will not allow a blank field. It then hides the check answer button and shows the next question button
   $('#submit-answer').on('submit', function(event){
     event.preventDefault();
+    //user answer is grabbed and lowercased
     var userAnswer = $('#user-answer').val().toLowerCase();
     $('.show-cards-question').html('');
     compareAnswers(userAnswer);
