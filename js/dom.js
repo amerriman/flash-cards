@@ -21,7 +21,7 @@ $(document).on('ready', function() {
     //creates new instance of SetOfCards with user title
     var newTitle = new SetOfCards(userInputtedTitle);
     //adds the new cardset title to the already created cards section
-    $('#cardsets').append('<label class="radio-inline bigger">' + '<img class="radio-icons" src="img/user.png" height="75px" width="75px" alt="user-created">' + '<br>' + '<input type="radio" value="'+ userInputtedTitle + '">' + newTitle.name + '</label');
+    $('#cardsets').append('<label class="radio-inline bigger">' + '<img class="radio-icons" src="img/user.png" height="75px" width="75px" alt="user-created">' + '<br>' + '<input type="radio" name="cardsets" value="'+ userInputtedTitle + '">' + newTitle.name + '</label');
     //holds the new cardset temporarily so we can add cards to it
     tempHold = newTitle;
     // removes the "create a title" div and displays the 'create questions and answers' div
@@ -47,8 +47,9 @@ $(document).on('ready', function() {
     // adds card data to dom in a table
     $('#card-table').append(
       "<tr class='display-to-user'>" +
-          "<td>" + newQuestion + "</td>" +
-          "<td>" + newAnswer + "</td>" +
+          "<td class='questions'>" + newQuestion + "</td>" +
+          "<td class='answers'>" + newAnswer + "</td>" +
+          "<td>" + "<a href='#' class='delete'>delete</a>" + "</td>" +
         "</tr>"
     );
     // clear user inputs
@@ -56,10 +57,31 @@ $(document).on('ready', function() {
     $('#answer').val('');
   });
 
+  //remove a question!!!!!!!!!!!!!!!!
+  $('table').on('click', '.delete', function(event){
+    event.preventDefault();
+    //grab the text of the table and assign to variables
+    var question = this.closest('tr').children[0].textContent;
+    var answer =  this.closest('tr').children[1].textContent;
+    //run the function to assure the card is removed from the array
+    removeCard(question, answer);
+    //remove the card from the table
+   $(this).closest('tr').remove();
+  });
+
 
   //user click on the 'Begin Review' button
   $('#new-set-begin').on('click', function(event){
     event.preventDefault();
+    //can't start without cards...
+    if(tempHold.cards.length < 1){
+      $('#alert-no-cards').append('<div id="alertdiv" class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span>'+"You haven't created any flashcards!"+'</span></div>');
+
+      setTimeout(function() {
+      $("#alertdiv").remove();
+      },  4000);
+    }
+    else {
     //changes viewing screen to card area
     $('#create-cards-container').css('display','none');
     $("#review-space").css('display','block');
@@ -72,6 +94,7 @@ $(document).on('ready', function() {
     showCards(currentReview);
     //clears the card creation question and answer table display
     $('.display-to-user').remove();
+    }
    });
 
 
@@ -96,7 +119,7 @@ $(document).on('ready', function() {
   //when users submits with the 'Check Answer' button it checks the answer, and displays a correct, or incorect message.  Also clears the user input field.  Will not allow a blank field. It then hides the check answer button and shows the next question button
   $('#submit-answer').on('submit', function(event){
     event.preventDefault();
-    var userAnswer = $('#user-answer').val();
+    var userAnswer = $('#user-answer').val().toLowerCase();
     $('.show-cards-question').html('');
     compareAnswers(userAnswer);
     //clears user answer space and the flashcard space
@@ -125,7 +148,9 @@ $(document).on('ready', function() {
     }
     else{
       //when cards run out - show all done message, hide the input areas, and ask if they want to review more
-      $('.show-cards-question').append("<p>All done!</p>");
+     $('.header').css('background-image','url(img/confetti2.jpg)');
+      // $('.show-cards-question').append("<p>All done!</p>");
+      $('#review-space').css('display', 'none');
       $('#submit-answer').css('display', 'none');
       $('#next-question').css('display', 'none');
       $('#study-more').css('display', 'block');
@@ -140,7 +165,9 @@ $(document).on('ready', function() {
     $('.show-cards').html("");
     $('#next-question').css('display', 'none');
     $('#study-more').css('display', 'none');
-    $('#review-space').css('display', 'none');
+    $('.header').css('background-image','url(img/blue.jpg)');
+    $('#study-more').css('display', 'none');
+    // $('#review-space').css('display', 'none');
     $('.initial').css('display', 'block');
   });
 
@@ -153,8 +180,9 @@ $(document).on('ready', function() {
     $('.display-to-user').remove();
     $('input[type="radio"]').prop('checked', false);
     $('.show-cards').html(" ");
+    $('.header').css('background-image','url(img/blue.jpg)');
     $('.initial').css('display', 'block');
-  })
+  });
 
 
   //if the user clicks on the CardSets, everything is cleared and they go to the choose a cardset page
@@ -168,8 +196,9 @@ $(document).on('ready', function() {
     $('.display-to-user').remove();
     $('input[type="radio"]').prop('checked', false);
     $('.show-cards').html(" ");
+    $('.header').css('background-image','url(img/blue.jpg)');
     $('#checkbox-space').css('display','block');
-  })
+  });
 
 
 });

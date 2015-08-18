@@ -4,7 +4,7 @@ function showAlert(message) {
   // this will automatically close the alert and remove this if the users doesn't close it in 5 secs
   setTimeout(function() {
     $("#alertdiv").remove();
-  }, 5000);
+  }, 4000);
 }
 
 
@@ -42,7 +42,6 @@ function showCards(arr){
 
 //checks user input answer against card answer
 function compareAnswers(userInput){
-  console.log(currentReview, "currentReview before actio")
   if(userInput === currentQuestion.answer){
     renderCorrect();
     return true;
@@ -56,14 +55,25 @@ function compareAnswers(userInput){
   }
 }
 
+//removes a card from the user created set
+function removeCard(question, answer){
+  for(var i = 0; i<tempHold.cards.length; i++){
+    if(question === tempHold.cards[i].question && answer === tempHold.cards[i].answer){
+      console.log(i);
+      tempHold.cards.splice([i], 1);
+      break;
+    }
+  }
+}
+
 //appends answer and message to the flashcard display when user is correct
 function renderCorrect(){
   $('.show-cards-answer').append('<p>Correct! The answer to "' + currentQuestion.question + '" is ' + currentQuestion.answer + '</p>');
-  $('.show-cards-answer').css("color", "green");
+  $('.show-cards-answer').css("color", "#88AB75");
 }
 
 //appends message and answer to the flashcard display when user is incorrect
 function renderIncorrect(){
   $('.show-cards-answer').append('<p>Incorrect. The answer to "' + currentQuestion.question + '" is ' + currentQuestion.answer + '</p>');
-  $('.show-cards-answer').css("color", "red");
+  $('.show-cards-answer').css("color", "#EE6352");
 }

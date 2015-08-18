@@ -47,7 +47,6 @@ SetOfCards.prototype.addCard = function(card){
 };
 
 
-
 //Master set for ALL cards
 var allFlashCards = new MasterCardSet("All Flash Cards");
 
@@ -58,17 +57,17 @@ var userCards = new MasterCardSet("User Cards");
 var javaScript = new SetOfCards("JavaScript");
 
 javaScript.cards = [
-  {question:"q1", answer: "a1"},
-  {question: "q2", answer: "a2"},
-  {question: "q3", answer: "a3"},
+  {question:"TRUE or FALSE - '2' is a string.", answer: "true"},
+  {question: "The five primitives are boolean, undefined, string, number and _________", answer: "null"},
+  {question: "The logical operator for 'and' is _________", answer: "&&"},
 ];
 
 var basicMath = new SetOfCards("Basic Math");
 
 basicMath.cards = [
-  {question:"What is 2 + 2?", answer:"4"},
+  {question:"What is 5 + 5?", answer:"10"},
   {question:"What is 2 x 2?", answer:"4"},
-  {question:"What is 2 / 2?", answer:"1"},
+  {question:"What is 9 / 3?", answer:"3"},
 ];
 
 //adding hard coded flash cards to master set

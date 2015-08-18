@@ -25,6 +25,8 @@
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -47,13 +49,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand take-me-home" href="#"><img src="img/flashcards.png" height="50px" width="50px" id="nav-bar-icon" alt="JavaScript"></a>
+                <a class="navbar-brand take-me-home" href="#"><img src="img/flashcards5.png" height="50px" width="50px" id="nav-bar-icon" alt="JavaScript"></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                         <p class="navbar-clickers take-me-home">FLashCards Home!</p>
+                         <p class="navbar-clickers take-me-home">Home!</p>
                     </li>
                     <li>
                          <p class="navbar-clickers to-the-cards">Card Sets</p>
@@ -88,13 +90,13 @@
                           <label class="radio-inline bigger">
                         <img class="radio-icons" src="img/js.png" height="75px" width="75px" alt="JavaScript">
                         <br>
-                        <input type="radio" value="JavaScript">
+                        <input type="radio" value="JavaScript" name="cardsets">
                         JavaScript</label>
 
                         <label class="radio-inline bigger">
                         <img class="radio-icons" src="img/math.jpg" alt="math" height="75px" width="75px">
                         <br>
-                        <input type="radio" value="Basic Math">Basic Math</label>
+                        <input type="radio" value="Basic Math" name="cardsets">Basic Math</label>
                     </div>
                     <div class="alert_placeholder col-md-4 col-md-offset-4"></div>
                     <div class="form-group">
@@ -165,15 +167,16 @@
                         <button type="submit" id="next_question-btn" class="btn btn-info btn-lg">Next Question</button>
                     </div>
                 </div>
-                <div class="row" id="study-more">
-                    <div class="final-buttons form-group text-center">
-                        <button type="submit" class="btn btn-success" id="study-more-btn">Study More</button>
-                    </div>
-                </div>
             </div>
 
         </div>
         <!-- <div class="text-vertical-center" -->
+
+        <div class="row" id="study-more">
+            <div class="final-buttons form-group text-center">
+                <button type="submit" class="btn btn-lg" id="study-more-btn">Great Job! Want to keep going?</button>
+            </div>
+        </div>
 
         <form class="form-horizontal begin-anew" id="create-cards-container">
             <div class="row">
@@ -199,7 +202,7 @@
                 </div>
                 <div class="col-md-7">
                     <div id="q-a-table-with-review-button">
-                        <table class="table table-bordered" id="card-table">
+                        <table class="table " id="card-table">
                             <caption class="new-cardset">What Topic Do You Need To Study?</caption>
                             <tbody class="striped">
                                 <tr>
@@ -212,6 +215,13 @@
                             <div class="row col-md-12">
                                 <div class="col-md-offset-4 col-md-4">
                                     <button type="submit" class="btn btn-info btn-lg btn-block begin-review" id="new-set-begin">Begin Review</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row col-md-12">
+                                <div class="col-md-offset-3 col-md-6">
+                                    <div id="alert-no-cards"></div>
                                 </div>
                             </div>
                         </div>
