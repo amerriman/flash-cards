@@ -70,6 +70,15 @@ basicMath.cards = [
   {question:"What is 9 / 3?", answer:"3"},
 ];
 
+var geography = new SetOfCards("Geography");
+
+geography.cards = [
+  {question:"How many continents are there on Earth?", answer:"7"},
+  {question:"What is the name for a group of islands?", answer:"archipelago"},
+  {question:"Which ocean borders California?", answer:"The Pacific Ocean"},
+];
+
 //adding hard coded flash cards to master set
 allFlashCards.addSet(javaScript);
 allFlashCards.addSet(basicMath);
+allFlashCards.addSet(geography);

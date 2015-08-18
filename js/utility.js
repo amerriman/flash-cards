@@ -66,6 +66,33 @@ function removeCard(question, answer){
   }
 }
 
+//checks for
+function duplicateQuestionCheck(question, answer){
+  //console.log(question, answer, "question and answer")
+  for (var i = 0; i < tempHold.cards.length; i++){
+    if(question === tempHold.cards[i].question){
+      $('#duplicate-question-alert').append('<div id="alertdiv" class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span>'+"It looks like you have already created that question!"+'</span></div>');
+      setTimeout(function() {
+        $("#alertdiv").remove();
+      }, 4000);
+    }
+    else {
+      //create the new card
+      var newCard = new Card(question, answer);
+      //add the new card to the new set, which is currently living in a temporary holding variable.
+      tempHold.addCard(newCard);
+      // add card data to dom in a table
+      $('#card-table').append(
+      "<tr class='display-to-user'>" +
+          "<td class='questions'>" + question + "</td>" +
+          "<td class='answers'>" + answer + "</td>" +
+          "<td>" + "<a href='#' class='delete'>delete</a>" + "</td>" +
+        "</tr>"
+      );
+    }
+  }
+}
+
 //appends answer and message to the flashcard display when user is correct
 function renderCorrect(){
   $('.show-cards-answer').append('<p>Correct! The answer to "' + currentQuestion.question + '" is ' + currentQuestion.answer + '</p>');

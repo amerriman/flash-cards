@@ -37,27 +37,37 @@ $(document).on('ready', function() {
   //User creates new cards
   $('#create-cards-container').on('submit', function(event){
     event.preventDefault();
+    console.log("woot")
     //grab the user input questions and answers
     var newQuestion = $('#question').val();
     var newAnswer = $('#answer').val();
+    //If this is the first card, push it to the array
+    if(tempHold.cards.length === 0) {
     //create the new card
     var newCard = new Card(newQuestion, newAnswer);
     //add the new card to the new set, which is currently living in a temporary holding variable.
     tempHold.addCard(newCard);
     // adds card data to dom in a table
     $('#card-table').append(
-      "<tr class='display-to-user'>" +
-          "<td class='questions'>" + newQuestion + "</td>" +
-          "<td class='answers'>" + newAnswer + "</td>" +
-          "<td>" + "<a href='#' class='delete'>delete</a>" + "</td>" +
-        "</tr>"
-    );
+    "<tr class='display-to-user'>" +
+        "<td class='questions'>" + newQuestion + "</td>" +
+        "<td class='answers'>" + newAnswer + "</td>" +
+        "<td>" + "<a href='#' class='delete'>delete</a>" + "</td>" +
+      "</tr>"
+     );
     // clear user inputs
     $('#question').val('');
     $('#answer').val('');
+    }
+    //checks for duplicate questions
+    else{
+      duplicateQuestionCheck(newQuestion, newAnswer);
+      $('#question').val('');
+      $('#answer').val('');
+    }
   });
 
-  //remove a question!!!!!!!!!!!!!!!!
+  //remove a question from table and from card array
   $('table').on('click', '.delete', function(event){
     event.preventDefault();
     //grab the text of the table and assign to variables
@@ -148,7 +158,8 @@ $(document).on('ready', function() {
     }
     else{
       //when cards run out - show all done message, hide the input areas, and ask if they want to review more
-     $('.header').css('background-image','url(img/confetti2.jpg)');
+      $('.header').css('background-image','url(img/confetti2.jpg)');
+      $('.navbar').css('backgound-color', 'black');
       // $('.show-cards-question').append("<p>All done!</p>");
       $('#review-space').css('display', 'none');
       $('#submit-answer').css('display', 'none');
@@ -161,6 +172,7 @@ $(document).on('ready', function() {
   $('#study-more-btn').on('click', function(){
     console.log("ARAREARWER");
     //show main choice area, hide review area
+    $('.navbar').css('backgound-color', '35393c');
     $('#submit-answer').css('display','block');
     $('.show-cards').html("");
     $('#next-question').css('display', 'none');
@@ -173,6 +185,7 @@ $(document).on('ready', function() {
 
   //if user clicks on the 'FlashCards Home' in the nav bar - They are taken back to the main page and everything else is reset
   $('.take-me-home').on('click', function(){
+    $('.navbar').css('backgound-color', '35393c');
     $('.begin-anew').css('display', 'none');
     $('.clear-all').val('');
     $('#show-cards-main').removeClass('flipped');
@@ -186,8 +199,8 @@ $(document).on('ready', function() {
 
 
   //if the user clicks on the CardSets, everything is cleared and they go to the choose a cardset page
-   $('.to-the-cards').on('click', function(){
-    console.log("woot");
+    $('.to-the-cards').on('click', function(){
+    $('.navbar').css('backgound-color', '35393c');
     $('.initial').css('display', 'none');
     $('.begin-anew').css('display', 'none');
     $('.clear-all').val('');

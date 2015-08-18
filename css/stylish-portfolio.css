@@ -72,7 +72,7 @@ body {
   transform: translateY(-50%);
   padding: 5%;
   width: 100%;
-  font-size: 40px;
+  font-size: 180%;
 }
 
 .show-cards-question p {
@@ -132,6 +132,9 @@ body {
 
 #study-more-btn {
     background-color: #FF6D46;
+    color: white;
+    margin-top: 260px;
+    border: 1px solid black;
 }
 
 .new-cardset {
