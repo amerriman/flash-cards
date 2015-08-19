@@ -171,7 +171,7 @@ $(document).on('ready', function() {
   $('#study-more-btn').on('click', function(){
     console.log("ARAREARWER");
     //show main choice area, hide review area
-    $('.navbar').css('backgound-color', '35393c');
+    $('.navbar').css('background-color', '35393c');
     $('#submit-answer').css('display','block');
     $('.show-cards').html("");
     $('#next-question').css('display', 'none');
@@ -184,7 +184,7 @@ $(document).on('ready', function() {
 
   //if user clicks on the 'FlashCards Home' in the nav bar - They are taken back to the main page and everything else is reset
   $('.take-me-home').on('click', function(){
-    $('.navbar').css('backgound-color', '35393c');
+    $('.navbar').css('background-color', '35393c');
     $('.begin-anew').css('display', 'none');
     $('.clear-all').val('');
     $('#show-cards-main').removeClass('flipped');
@@ -199,7 +199,7 @@ $(document).on('ready', function() {
 
   //if the user clicks on the CardSets, everything is cleared and they go to the choose a cardset page
     $('.to-the-cards').on('click', function(){
-    $('.navbar').css('backgound-color', '35393c');
+    $('.navbar').css('background-color', '35393c');
     $('.initial').css('display', 'none');
     $('.begin-anew').css('display', 'none');
     $('.clear-all').val('');
