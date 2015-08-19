@@ -117,6 +117,8 @@ $(document).on('ready', function() {
       $('input[type="radio"]').prop('checked', false);
       $('#checkbox-space').css('display','none');
       $("#review-space").css('display','block');
+      $('#submit-answer').css('display', 'block');
+      $('#next-question').css('display', 'none');
       findMatchingCardSet(chosen);
       shuffle(chosenCardSet);
       showCards(currentReview);
@@ -185,7 +187,10 @@ $(document).on('ready', function() {
   //if user clicks on the 'FlashCards Home' in the nav bar - They are taken back to the main page and everything else is reset
   $('.take-me-home').on('click', function(){
     $('.navbar').css('background-color', '35393c');
-    $('.begin-anew').css('display', 'none');
+    $('#create-cardset-title').css('display', 'none');
+    $('#checkbox-space').css('display', 'none');
+    $('#review-space').css('display', 'none');
+    $('#create-cards-container').css('display', 'none');
     $('#study-more').css('display', 'none');
     $('.clear-all').val('');
     $('#show-cards-main').removeClass('flipped');
@@ -202,7 +207,10 @@ $(document).on('ready', function() {
     $('.to-the-cards').on('click', function(){
     $('.navbar').css('background-color', '35393c');
     $('.initial').css('display', 'none');
-    $('.begin-anew').css('display', 'none');
+    $('#create-cardset-title').css('display', 'none');
+    $('#checkbox-space').css('display', 'none');
+    $('#review-space').css('display', 'none');
+    $('#create-cards-container').css('display', 'none');
     $('#study-more').css('display', 'none');
     $('.clear-all').val('');
     $('#show-cards-main').removeClass('flipped');

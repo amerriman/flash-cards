@@ -1,8 +1,6 @@
 //////////DETAILS////////////
 
 
-
-
 //Make a progress bar that functions
 
 
