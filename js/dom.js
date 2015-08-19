@@ -93,6 +93,8 @@ $(document).on('ready', function() {
     //changes viewing screen to card area
     $('#create-cards-container').css('display','none');
     $("#review-space").css('display','block');
+    $('#submit-answer').css('display', 'block');
+    $('#next-question').css('display', 'none');
     //adds user created flashcards to main card array(s)
     chosenCardSet = tempHold.cards.slice(0);
     allFlashCards.addSet(tempHold);
@@ -173,7 +175,6 @@ $(document).on('ready', function() {
   $('#study-more-btn').on('click', function(){
     console.log("ARAREARWER");
     //show main choice area, hide review area
-    $('.navbar').css('background-color', '35393c');
     $('#submit-answer').css('display','block');
     $('.show-cards').html("");
     $('#next-question').css('display', 'none');
@@ -182,11 +183,12 @@ $(document).on('ready', function() {
     $('#study-more').css('display', 'none');
     // $('#review-space').css('display', 'none');
     $('.initial').css('display', 'block');
+    $('.navbar').removeAttr('style');;
   });
 
   //if user clicks on the 'FlashCards Home' in the nav bar - They are taken back to the main page and everything else is reset
   $('.take-me-home').on('click', function(){
-    $('.navbar').css('background-color', '35393c');
+    $('.navbar').removeAttr('style');
     $('#create-cardset-title').css('display', 'none');
     $('#checkbox-space').css('display', 'none');
     $('#review-space').css('display', 'none');
