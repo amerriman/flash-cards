@@ -186,7 +186,7 @@ $(document).on('ready', function() {
   $('.take-me-home').on('click', function(){
     $('.navbar').css('background-color', '35393c');
     $('.begin-anew').css('display', 'none');
-    $('study-more-btn').css('display', 'none');
+    $('#study-more').css('display', 'none');
     $('.clear-all').val('');
     $('#show-cards-main').removeClass('flipped');
     $('#show-cards-wrapper').removeClass('flipped');
@@ -203,7 +203,7 @@ $(document).on('ready', function() {
     $('.navbar').css('background-color', '35393c');
     $('.initial').css('display', 'none');
     $('.begin-anew').css('display', 'none');
-    $('study-more-btn').css('display', 'none');
+    $('#study-more').css('display', 'none');
     $('.clear-all').val('');
     $('#show-cards-main').removeClass('flipped');
     $('#show-cards-wrapper').removeClass('flipped');
