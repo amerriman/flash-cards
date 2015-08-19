@@ -40,39 +40,30 @@ $(document).on('ready', function() {
     //grab the user input questions and answers
     var newQuestion = $('#question').val();
     var newAnswer = $('#answer').val();
-    //////////////////////////take out if fail//////////
-    var questionLC = newQuestion.toLowerCase();
-    var arrayQLC;
-    ///////////////////////////////////
-    //If this is the first card, push it to the array
-    if(tempHold.cards.length === 0) {
-      //create the new card
+
+    if (tempHold.cards.length < 1){
       var newCard = new Card(newQuestion, newAnswer);
-      //add the new card to the new set, which is currently living in a temporary holding variable.
+//       //add the new card to the new set, which is currently living in a temporary holding variable.
       tempHold.addCard(newCard);
-      // adds card data to dom in a table
+//       // adds card data to dom in a table
       $('#card-table').append(
       "<tr class='display-to-user'>" +
           "<td class='questions'>" + newQuestion + "</td>" +
           "<td class='answers'>" + newAnswer + "</td>" +
-          "<td>" + "<a href='#' class='delete'>delete</a>" + "</td>" +
-        "</tr>"
-       );
-      // clear user inputs
+          "<td>" + "<a href='#' class='delete'>remove</a>" + "</td>" +
+        "</tr>");
+      //clear the user input area
       $('#question').val('');
       $('#answer').val('');
     }
-
-    ////////////////////////////////////////////////////////////
-    //checks for duplicate questions
     else{
-      duplicateQuestionCheck(newQuestion, newAnswer, tempHold.cards);
-
+      duplicateQuestionCheck(newQuestion, newAnswer);
     }
+    //clear the input
     $('#question').val('');
-      $('#answer').val('');
-    ////////////////////////////////////////////////////////////////
+    $('#answer').val('');
   });
+
 
   //remove a question from table and from card array
   $('table').on('click', '.delete', function(event){
@@ -167,7 +158,7 @@ $(document).on('ready', function() {
     else{
       //when cards run out - show all done message, hide the input areas, and ask if they want to review more
       $('.header').css('background-image','url(img/confetti2.jpg)');
-      $('.navbar').css('backgound-color', 'black');
+      $('.navbar').css('background-color', 'black');
       // $('.show-cards-question').append("<p>All done!</p>");
       $('#review-space').css('display', 'none');
       $('#submit-answer').css('display', 'none');

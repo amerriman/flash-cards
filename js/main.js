@@ -12,6 +12,7 @@ var tempHold = [];
 
 
 
+
 ///BASE CONSTRUCTORS
 
 function Card(question, answer){
@@ -45,6 +46,12 @@ MasterCardSet.prototype.addSet = function(setName){
 SetOfCards.prototype.addCard = function(card){
   this.cards.push(card);
 };
+
+SetOfCards.prototype.duplicateQuestionCheck = function(question, answer){
+
+
+};
+
 
 
 //Master set for ALL cards

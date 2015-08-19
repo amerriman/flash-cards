@@ -66,43 +66,6 @@ function removeCard(question, answer){
   }
 }
 
-//checks for
-function duplicateQuestionCheck(question, answer, array){
-  var tempHoldQuestionLC = ""
-  var questionLC = question.toLowerCase();
-  for (var i = 0; i < array.length; i++){
-
-
-
-    tempHoldQuestionLC = array[i].question.toLowerCase();
-
-    if(questionLC === tempHoldQuestionLC){
-
-      $('#duplicate-question-alert').append('<div id="alertdiv" class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span>'+"It looks like you have already created that question!"+'</span></div>');
-      setTimeout(function() {
-        $("#alertdiv").remove();
-      }, 4000);
-
-
-    }
-    else {
-      //create the new card
-      var newCard = new Card(question, answer);
-      //add the new card to the new set, which is currently living in a temporary holding variable.
-      tempHold.addCard(newCard);
-      // add card data to dom in a table
-      $('#card-table').append(
-      "<tr class='display-to-user'>" +
-          "<td class='questions'>" + question + "</td>" +
-          "<td class='answers'>" + answer + "</td>" +
-          "<td>" + "<a href='#' class='delete'>delete</a>" + "</td>" +
-        "</tr>");
-      //console.log(tempHold, "inside if")
-      return newCard;
-
-    }
-  }
-}
 
 //appends answer and message to the flashcard display when user is correct
 function renderCorrect(){
@@ -115,3 +78,41 @@ function renderIncorrect(){
   $('.show-cards-answer').append('<p>Incorrect. The answer to "' + currentQuestion.question + '" is ' + currentQuestion.answer + '</p>');
   $('.show-cards-answer').css("color", "#EE6352");
 }
+
+
+//checks for duplicates
+function duplicateQuestionCheck(question, answer){
+  var toAdd = 0;
+  console.log(tempHold, "temphold at start of loop");
+  for (var i = 0; i <tempHold.cards.length; i++){
+   if (tempHold.cards[i].question.toLowerCase() === question.toLowerCase()){
+      toAdd = 1;
+      $('#duplicate-question-alert').append('<div id="alertdiv" class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span>'+"It looks like you have already created that question!"+'</span></div>');
+          setTimeout(function() {
+            $("#alertdiv").remove();
+          }, 4000);
+      console.log("got it!");
+      console.log(tempHold.cards[i].question, question);
+    }
+  }
+  console.log(toAdd, "toAdd at the end of loop");
+  if(toAdd === 0){
+    var newCard = new Card(question, answer);
+//       //add the new card to the new set, which is currently living in a temporary holding variable.
+      tempHold.addCard(newCard);
+//       // adds card data to dom in a table
+      $('#card-table').append(
+      "<tr class='display-to-user'>" +
+          "<td class='questions'>" + question + "</td>" +
+          "<td class='answers'>" + answer + "</td>" +
+          "<td>" + "<a href='#' class='delete'>remove</a>" + "</td>" +
+        "</tr>"
+       );
+
+       $('#question').val('');
+       $('#answer').val('');
+  }
+ //not in the loop
+}
+
+
