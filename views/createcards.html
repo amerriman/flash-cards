@@ -1,0 +1,124 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand take-me-home" href="#"><img src="/img/flashcards5.png" height="50px" width="50px" id="nav-bar-icon" alt="JavaScript"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                         <p class="navbar-clickers take-me-home">Home!</p>
+                    </li>
+                    <li>
+                         <p class="navbar-clickers to-the-cards">Card Sets</p>
+                    </li>
+                   <!--  <li>
+                        <p class="navbar-clickers">Card Sets</p>
+                    </li> -->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <!-- Header - functioning as main staging area -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <div class="initial">
+                <h1>Get your study on!</h1>
+                <h3>What would you like to do?</h3>
+                <p><button type="submit" class="btn btn-info btn-lg pre-made">Pick a Topic</button>
+                <button type="submit" class="btn btn-info btn-lg" id="create-own">Create Your Own</button></p>
+            </div>
+
+        </div>
+        <!-- <div class="text-vertical-center" -->
+
+
+        <form class="form-horizontal " id="create-cards-container">
+            <div class="row">
+                <div class="col-md-5" id="create-q-and-a">
+                    <h2 class="text-center">Create A Study Card</h2>
+                    <div class="form-group">
+                        <label for="createQuestion" class="col-md-2 control-label">Question</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control clear-all" id="question" placeholder="Type the question here..." required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="createAnswer" class="col-md-2 control-label">Answer</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control clear-all" id="answer" placeholder="Type the answer here..." required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-info btn-lg" id="create-card-btn">Create Your Flashcard!</button>
+                        </div>
+                        <div class="form-group">
+                        <div class="row col-md-12">
+                            <div class="col-md-offset-3 col-md-6">
+                                <div id="duplicate-question-alert"></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <div class="row col-md-12">
+                            <div class="col-md-offset-3 col-md-6">
+                                <div id="duplicate-question-alert"></div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="col-md-7">
+                    <div id="q-a-table-with-review-button">
+                        <table class="table " id="card-table">
+                            <caption class="new-cardset">What Topic Do You Need To Study?</caption>
+                            <tbody class="striped">
+                                <tr>
+                                    <th>Your Study Questions</th>
+                                    <th>Your Study Answers</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="form-group">
+                            <div class="row col-md-12">
+                                <div class="col-md-offset-4 col-md-4">
+                                    <button type="submit" class="btn btn-info btn-lg btn-block begin-review" id="new-set-begin">Begin Review</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row col-md-12">
+                                <div class="col-md-offset-3 col-md-6">
+                                    <div id="alert-no-cards"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </header>
+
+
+{% endblock %}

@@ -1,0 +1,350 @@
+{% extends 'layout.html' %}
+
+{% block title %}{% endblock %}
+
+
+{% block content %}
+
+<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand take-me-home" href="#"><img src="/img/flashcards5.png" height="50px" width="50px" id="nav-bar-icon" alt="JavaScript"></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                         <p class="navbar-clickers take-me-home">Home!</p>
+                    </li>
+                    <li>
+                         <p class="navbar-clickers to-the-cards">Card Sets</p>
+                    </li>
+                   <!--  <li>
+                        <p class="navbar-clickers">Card Sets</p>
+                    </li> -->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <!-- Header - functioning as main staging area -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <div class="initial">
+                <h1>Get your study on!</h1>
+                <h3>What would you like to do?</h3>
+                <p><button type="submit" class="btn btn-info btn-lg pre-made">Pick a Topic</button>
+                <button type="submit" class="btn btn-info btn-lg" id="create-own">Create Your Own</button></p>
+            </div>
+
+            <div class="row " id="checkbox-space">
+                <div class="col-md-12 text-center">
+                    <h1 class="text-center">Choose a study topic</h1>
+                </div>
+                <div class="form-group">
+                    <div class=" form-group-lg" id="cardsets">
+                          <label class="radio-inline bigger">
+                        <img class="radio-icons" src="/img/js.png" height="75px" width="75px" alt="JavaScript">
+                        <br>
+                        <input type="radio" value="JavaScript" name="cardsets">
+                        JavaScript</label>
+
+                        <label class="radio-inline bigger">
+                        <img class="radio-icons" src="/img/math.jpg" alt="math" height="75px" width="75px">
+                        <br>
+                        <input type="radio" value="Basic Math" name="cardsets">Basic Math</label>
+
+                        <label class="radio-inline bigger">
+                        <img class="radio-icons" src="/img/earth.jpg" alt="math" height="75px" width="75px">
+                        <br>
+                        <input type="radio" value="Geography" name="cardsets">Geography</label>
+                    </div>
+                    <div class="alert_placeholder col-md-4 col-md-offset-4"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3 text-center">
+                            <button type="submit" class="btn btn-info btn-lg" id="check-box-start">Begin Review</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <form id="create-cardset-title" class="">
+                <div class="row form">
+                    <div class="text-center">
+                        <h2>What Topic Would You Like Study?</h2>
+                    </div>
+                    <!-- <div class="col-md-4 col-md-offset-4 alert_placeholder"></div> -->
+                    <div class="form-group col-md-6 col-md-offset-3">
+                        <input type="text" class="form-control clear-all" id="new-title" placeholder="Create a title for your flash card set" required>
+                    </div>
+                    <div class="col-md-6 col-md-offset-3 text-center">
+                        <button type="submit" class="btn btn-info btn-lg" id="create-cardset-btn">Continue</button>
+                    </div>
+                </div>
+            </form>
+
+
+            <div id="review-space" class="">
+                <div class="row form-group">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="flip" id="show-cards-main">
+                        <div id="show-cards-wrapper">
+                            <div class="show-cards show-cards-question"></div>
+                            <div class="show-cards show-cards-answer"></div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="row ">
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar"
+                          aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+                            40%
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+
+
+                <form id="submit-answer">
+                    <div class="form-group form-horizontal">
+                        <label class="col-md-4  control-label"></label>
+                      <div class="col-md-4">
+                        <input type="text" class="form-control clear-all" id="user-answer" placeholder="Type answer here..." required>
+                      </div>
+                    </div>
+
+                    <div class="row" id="submit-user-answer">
+                        <div class="final-buttons form-group text-center">
+                        <button type="submit" id="submit-user-answer-btn" class="btn btn-info btn-lg">Check Your Answer!</button>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="row" id="next-question">
+                    <div class="final-buttons form-group text-center">
+                        <button type="submit" id="next_question-btn" class="btn btn-info btn-lg">Next Question</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- <div class="text-vertical-center" -->
+
+        <div class="row" id="study-more">
+            <div class="final-buttons form-group text-center">
+                <button type="submit" class="btn btn-lg" id="study-more-btn">Great Job! Want to study again?</button>
+            </div>
+        </div>
+
+        <form class="form-horizontal " id="create-cards-container">
+            <div class="row">
+                <div class="col-md-5" id="create-q-and-a">
+                    <h2 class="text-center">Create A Study Card</h2>
+                    <div class="form-group">
+                        <label for="createQuestion" class="col-md-2 control-label">Question</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control clear-all" id="question" placeholder="Type the question here..." required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="createAnswer" class="col-md-2 control-label">Answer</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control clear-all" id="answer" placeholder="Type the answer here..." required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <button type="submit" class="btn btn-info btn-lg" id="create-card-btn">Create Your Flashcard!</button>
+                        </div>
+                        <div class="form-group">
+                        <div class="row col-md-12">
+                            <div class="col-md-offset-3 col-md-6">
+                                <div id="duplicate-question-alert"></div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <!-- <div class="form-group">
+                        <div class="row col-md-12">
+                            <div class="col-md-offset-3 col-md-6">
+                                <div id="duplicate-question-alert"></div>
+                            </div>
+                        </div>
+                    </div> -->
+                </div>
+                <div class="col-md-7">
+                    <div id="q-a-table-with-review-button">
+                        <table class="table " id="card-table">
+                            <caption class="new-cardset">What Topic Do You Need To Study?</caption>
+                            <tbody class="striped">
+                                <tr>
+                                    <th>Your Study Questions</th>
+                                    <th>Your Study Answers</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="form-group">
+                            <div class="row col-md-12">
+                                <div class="col-md-offset-4 col-md-4">
+                                    <button type="submit" class="btn btn-info btn-lg btn-block begin-review" id="new-set-begin">Begin Review</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row col-md-12">
+                                <div class="col-md-offset-3 col-md-6">
+                                    <div id="alert-no-cards"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+    </header>
+
+    <!-- About -->
+    <!-- <section id="about" class="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Stylish Portfolio is the perfect theme for your next project!</h2>
+                    <p class="lead">This theme features some wonderful photography courtesy of <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a>.</p>
+                </div>
+            </div> -->
+            <!-- /.row -->
+        <!-- </div> -->
+        <!-- /.container -->
+    <!-- </section> -->
+
+    <!-- Services -->
+    <!-- The circle icons use Font Awesome's stacked icon classes. For more information, visit http://fontawesome.io/examples/ -->
+    <!-- <section id="services" class="services bg-primary">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2>Our Services</h2>
+                    <hr class="small">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-cloud fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>Service Name</strong>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-compass fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>Service Name</strong>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-flask fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>Service Name</strong>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="service-item">
+                                <span class="fa-stack fa-4x">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-shield fa-stack-1x text-primary"></i>
+                            </span>
+                                <h4>
+                                    <strong>Service Name</strong>
+                                </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <a href="#" class="btn btn-light">Learn More</a>
+                            </div>
+                        </div>
+                    </div> -->
+                    <!-- /.row (nested) -->
+                <!-- </div> -->
+                <!-- /.col-lg-10 -->
+            <!-- </div> -->
+            <!-- /.row -->
+        <!-- </div> -->
+        <!-- /.container -->
+    <!-- </section> -->
+
+    <!-- Callout -->
+    <!-- <aside class="callout">
+        <div class="text-vertical-center">
+            <h1>Vertically Centered Text</h1>
+        </div>
+    </aside>
+ -->
+
+
+    <!-- Footer -->
+    <!-- <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>Start Bootstrap</strong>
+                    </h4>
+                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                        </li>
+                    </ul>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+ -->
+
+{% endblock %}
