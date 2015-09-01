@@ -7,62 +7,62 @@ $(document).on('ready', function() {
   });
 
   //shows user the create card-set title screen
-  $('#create-own').on('click', function(){
-    $('.initial').css('display', 'none');
-    $('#create-cardset-title').css('display','block');
-  });
+  // $('#create-own').on('click', function(){
+  //   $('.initial').css('display', 'none');
+  //   $('#create-cardset-title').css('display','block');
+  // });
 
 
   //User creates new cardset - with no cards yet
-  $('#create-cardset-title').on('submit', function(event){
-    event.preventDefault();
-    //grab user input name for card set
-    var userInputtedTitle = $('#new-title').val();
-    //creates new instance of SetOfCards with user title
-    var newTitle = new SetOfCards(userInputtedTitle);
-    //adds the new cardset title to the already created cards section
-    $('#cardsets').append('<label class="radio-inline bigger">' + '<img class="radio-icons" src="img/user.png" height="75px" width="75px" alt="user-created">' + '<br>' + '<input type="radio" name="cardsets" value="'+ userInputtedTitle + '">' + newTitle.name + '</label');
-    //holds the new cardset temporarily so we can add cards to it
-    tempHold = newTitle;
-    // removes the "create a title" div and displays the 'create questions and answers' div
-    $('#create-cardset-title').css('display','none');
-    $("#create-cards-container").css('display','block');
-    // appends new title to new card set page
-    $(".new-cardset").html(userInputtedTitle);
-    //clear the user input field
-    $('#new-title').val('');
-  });
+  // $('#create-cardset-title').on('submit', function(event){
+  //   event.preventDefault();
+  //   //grab user input name for card set
+  //   var userInputtedTitle = $('#new-title').val();
+  //   //creates new instance of SetOfCards with user title
+  //   var newTitle = new SetOfCards(userInputtedTitle);
+  //   //adds the new cardset title to the already created cards section
+  //   $('#cardsets').append('<label class="radio-inline bigger">' + '<img class="radio-icons" src="img/user.png" height="75px" width="75px" alt="user-created">' + '<br>' + '<input type="radio" name="cardsets" value="'+ userInputtedTitle + '">' + newTitle.name + '</label');
+  //   //holds the new cardset temporarily so we can add cards to it
+  //   tempHold = newTitle;
+  //   // removes the "create a title" div and displays the 'create questions and answers' div
+  //   $('#create-cardset-title').css('display','none');
+  //   $("#create-cards-container").css('display','block');
+  //   // appends new title to new card set page
+  //   $(".new-cardset").html(userInputtedTitle);
+  //   //clear the user input field
+  //   $('#new-title').val('');
+  // });
 
 
   //User creates new cards
-  $('#create-cards-container').on('submit', function(event){
-    event.preventDefault();
-    //grab the user input questions and answers
-    var newQuestion = $('#question').val();
-    var newAnswer = $('#answer').val();
+//   $('#create-cards-container').on('submit', function(event){
+//     event.preventDefault();
+//     //grab the user input questions and answers
+//     var newQuestion = $('#question').val();
+//     var newAnswer = $('#answer').val();
 
-    if (tempHold.cards.length < 1){
-      var newCard = new Card(newQuestion, newAnswer);
-//       //add the new card to the new set, which is currently living in a temporary holding variable.
-      tempHold.addCard(newCard);
-//       // adds card data to dom in a table
-      $('#card-table').append(
-      "<tr class='display-to-user'>" +
-          "<td class='questions'>" + newQuestion + "</td>" +
-          "<td class='answers'>" + newAnswer + "</td>" +
-          "<td>" + "<a href='#' class='delete'>remove</a>" + "</td>" +
-        "</tr>");
-      //clear the user input area
-      $('#question').val('');
-      $('#answer').val('');
-    }
-    else{
-      duplicateQuestionCheck(newQuestion, newAnswer);
-    }
-    //clear the input
-    $('#question').val('');
-    $('#answer').val('');
-  });
+//     if (tempHold.cards.length < 1){
+//       var newCard = new Card(newQuestion, newAnswer);
+// //       //add the new card to the new set, which is currently living in a temporary holding variable.
+//       tempHold.addCard(newCard);
+// //       // adds card data to dom in a table
+//       $('#card-table').append(
+//       "<tr class='display-to-user'>" +
+//           "<td class='questions'>" + newQuestion + "</td>" +
+//           "<td class='answers'>" + newAnswer + "</td>" +
+//           "<td>" + "<a href='#' class='delete'>remove</a>" + "</td>" +
+//         "</tr>");
+//       //clear the user input area
+//       $('#question').val('');
+//       $('#answer').val('');
+//     }
+//     else{
+//       duplicateQuestionCheck(newQuestion, newAnswer);
+//     }
+//     //clear the input
+//     $('#question').val('');
+//     $('#answer').val('');
+//   });
 
 
   //remove a question from table and from card array
