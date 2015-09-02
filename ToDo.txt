@@ -1,23 +1,13 @@
-FOR NOW - just get the database working - is this going to work without the posts and the puts?  I don't think so.... maybe it'll just keep refreshing and going back to the home page accidentally, because of the jquery stuff.
 
-1 - Make the create your own button take you to the create page
-2 - Make a cardset page
-    - When showing cardsets- make this happen through routes?
-3 - When creating cards - make them appear through routes, not with jQuery?  Make sure this is cleared out as soon as the review begins AND/OR when the user goes home or to the cardset page.
-4 - keep the intro screen and the cardset screen the same? I say yes, for now.
+1 - When creating cards - make them appear through routes, not with jQuery?  Make sure this is cleared out as soon as the review begins AND/OR when the user goes home or to the cardset page.
+2 - keep the intro screen and the cardset screen the same? I say yes, for now.
 
-//Create the cardset name, then hide that form so all the rest is just creating questions - don't want them to have to specify which set this is the whole time.
+
 
 
 
 QUESTIONS -
 
-* set up API like the superheros thing.  When a user wants to create a flashcard set, should they be directed to the API site (and I just style it like the 'create' page is already?) or do I create a whole new one in 'Users'
 
-*How do I allow a user to create multiple cards in the same set so that they all get pushed to the right set of cards?  Basically like before where I hide the main thing and then push the questions into the database array?
 
 * Eventually, I want users to only see the cards they create, plus maybe a generalized starter set of ones that are available to all as a sample.  How do I best set myself up for this.
-
-
-
-????????LEFT OFF - update the create page so that it takes all the input for the cardsets - still need to know how to push lots of cards into the card array.

@@ -2,52 +2,47 @@ $(document).on('ready', function(){
   listCardSets();
 
 });
+//temp - holds name for cardset - get rid of this eventually
+var $name;
 
-//want this to....on button click, create the name of the cardset, and then show the create card form and the card table with the title of the cardset shown (and be able to use that to find the cardset in the database and add cards to it) and hide the title part.
 
+//create cardset and first card.
 $('#create-cards-container').on('submit', function(event){
   event.preventDefault();
   //SO MANY THINGS
   var $question = $('#question').val();
   var $answer = $('#answer').val();
-  var $name = $("#card-set-name").html();
+  $name = $("#card-set-name").html();
 
-  var cardPayload = {
+  var payload = {
     question: $question,
     answer: $answer,
     name: $name
   };
 
-  $.post('api/flashcards/', cardPayload, function(data){
-    console.log(data, "data");
+    $('#question').val("");
+    $('#answer').val("");
 
+  $.post('api/flashcards/', payload, function(data){
+    $('#card-table').html("");
+    listCardSets();
   });
-
-
 });
 
 
-
+//grab cardset title, append to next screen
 $('#create-cardset-title').on('submit', function(event){
   event.preventDefault();
   $("#create-cardset-title").css('display','none');
   $('#create-cards-container').css('display', 'block');
-  //form input - cardset name
-  var $name = $('#new-title').val();
-  var titlePayload = {
-    name: $name
-  };
+  $name = $('#new-title').val();
+
   $("#card-set-name").html($name);
 
-  $.post('/api/flashcards', titlePayload, function(data){
-    //clear out the table so it repopulates correctly, and clear out the form
-    $('#card-table').html("");
-    $(':input', 'form').val('');
-    // listCardSets();
-  });
+  $('#new-title').val('');
+
 });
 
-//with create card form - want on button click for it to push the card to the cardset it belongs in.
 
 
 //This deletes a cardset from the form - though ultimately this needs to look different.  Maybe I need to make two tables until this gets nailed down
@@ -96,14 +91,17 @@ function listCardSets(){
 }
 
 
-// function listFlashCards() {
-//   $.get('/api/flashcard/:id', function(data){
+function listFlashCards() {
+  $.get('/api/flashcard/:id', function(data){
+    for (var i = 0; i < data.length; i++) {
+
+    }
 
 
 
-//   })
-//   // body...
-// }
+  });
+  // body...
+}
 
 
 

@@ -10,6 +10,10 @@ var bodyParser = require('body-parser');
 var swig = require('swig');
 var methodOverride = require('method-override');
 
+//seed database
+var databaseSeed = require('./seed');
+databaseSeed();
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var api = require('./routes/api');

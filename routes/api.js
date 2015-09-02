@@ -17,65 +17,56 @@ router.get('/flashcards', function(req, res) {
 });
 
 
-//This is pushing cards into the array( strange things happen around the 3rd or 4th push), but also creating an empty first card.   Also, it will create a double cards still.  This should just be up to the user to delete.
-
 //post ALL flashcards
 router.post('/flashcards', function(req, res) {
   // findOne by name
   var query = {"name": req.body.name};
-  SetOfCards.findOne(query, function(err, flashcard){
-    if(true){
-      query = {"name": req.body.name};
-      var options = {safe: true, upsert: true, new: true};
-      var update = {$push: {"cards":{"question": req.body.question, "answer":req.body.answer}}};
-      SetOfCards.findOneAndUpdate(query, update, options, function(err, flashcard){});
+  var options = {upsert: true, new: true};
+  var update = {$push: {"cards":{"question": req.body.question, "answer":req.body.answer}}};
+  SetOfCards.findOneAndUpdate(query, update, options, function(err, flashcard){
+    if (err){
+      console.log("Something went wrong");
     }
     else {
-
-
-
-
-    //console.log("AARRGHHH!!");
-
-
-      new SetOfCards(
-        {
-          name : req.body.name,
-          cards : [
-            {
-              question: req.body.question,
-              answer: req.body.answer
-            }
-          ]
-        })
-      .save(function(err, flashcard){
-        //console.log(req.body);
-      //res.redirect('/api/flashcards');
-      res.json({message: 'Success!'});
-      });
-
-
-
+      console.log("COWS");
+      // res.json()
     }
-
   });
-      // new SetOfCards(
-      //   {
-      //     name : req.body.name,
-      //     cards : [
-      //       {
-      //         question: req.body.question,
-      //         answer: req.body.answer
-      //       }
-      //     ]
-      //   })
-      // .save(function(err, flashcard){
-      //   //console.log(req.body);
-      // //res.redirect('/api/flashcards');
-      // res.json({message: 'Success!'});
-      // });
-
 });
+
+
+//This is pushing cards into the array( strange things happen around the 3rd or 4th push), but also creating an empty first card.   Also, it will create a double cards still.  This should just be up to the user to delete.
+
+// //post ALL flashcards
+// router.post('/flashcards', function(req, res) {
+//   // findOne by name
+//   var query = {"name": req.body.name};
+//   SetOfCards.findOne(query, function(err, flashcard){
+//     if(true){
+//       query = {"name": req.body.name};
+//       var options = {safe: true, upsert: true, new: true};
+//       var update = {$push: {"cards":{"question": req.body.question, "answer":req.body.answer}}};
+//       SetOfCards.findOneAndUpdate(query, update, options, function(err, flashcard){});
+//       console.log("COWS");
+//     }
+//     else {
+
+//       new SetOfCards(
+//         {
+//           name : req.body.name,
+//           cards : [
+//             {
+//               question: req.body.question,
+//               answer: req.body.answer
+//             }
+//           ]
+//         })
+//       .save(function(err, flashcard){
+//       res.json({message: 'Success!'});
+//       });
+//     }
+//   });
+// });
 
 
 //get ONE flashcard set
