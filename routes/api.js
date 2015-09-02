@@ -3,6 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var SetOfCards = mongoose.model('create_set');
 
+
 //show ALL flashcards
 router.get('/flashcards', function(req, res) {
   SetOfCards.find(function(err, flashcards){
@@ -15,28 +16,70 @@ router.get('/flashcards', function(req, res) {
   });
 });
 
+
+//This is pushing cards into the array( strange things happen around the 3rd or 4th push), but also creating an empty first card.   Also, it will create a double cards still.  This should just be up to the user to delete.
+
 //post ALL flashcards
 router.post('/flashcards', function(req, res) {
-  new SetOfCards(
-    {
-      name : req.body.name,
-      cards : [
-        {
-          question: req.body.question,
-          answer: req.body.answer
-        }
-      ]
+  // findOne by name
+  var query = {"name": req.body.name};
+  SetOfCards.findOne(query, function(err, flashcard){
+    if(true){
+      query = {"name": req.body.name};
+      var options = {safe: true, upsert: true, new: true};
+      var update = {$push: {"cards":{"question": req.body.question, "answer":req.body.answer}}};
+      SetOfCards.findOneAndUpdate(query, update, options, function(err, flashcard){});
+    }
+    else {
 
-    })
-  .save(function(err, flashcard){
-    //console.log(req.body);
-  //res.redirect('/api/flashcards');
-  res.json({message: 'Success!'});
+
+
+
+    //console.log("AARRGHHH!!");
+
+
+      new SetOfCards(
+        {
+          name : req.body.name,
+          cards : [
+            {
+              question: req.body.question,
+              answer: req.body.answer
+            }
+          ]
+        })
+      .save(function(err, flashcard){
+        //console.log(req.body);
+      //res.redirect('/api/flashcards');
+      res.json({message: 'Success!'});
+      });
+
+
+
+    }
+
   });
+      // new SetOfCards(
+      //   {
+      //     name : req.body.name,
+      //     cards : [
+      //       {
+      //         question: req.body.question,
+      //         answer: req.body.answer
+      //       }
+      //     ]
+      //   })
+      // .save(function(err, flashcard){
+      //   //console.log(req.body);
+      // //res.redirect('/api/flashcards');
+      // res.json({message: 'Success!'});
+      // });
+
 });
 
+
 //get ONE flashcard set
-router.get('/flashcard/:id', function(req, res){
+router.get('/flashcard/:name', function(req, res){
   var query = {"_id": req.params.id};
   SetOfCards.findOne(query, function(err, flashcard){
     //console.log(flashcard);
@@ -49,6 +92,7 @@ router.get('/flashcard/:id', function(req, res){
   res.json(flashcard);
   });
 });
+
 
 //update ONE flashcard set
 router.put('/flashcard/:id', function(req, res) {
@@ -64,6 +108,7 @@ router.put('/flashcard/:id', function(req, res) {
   res.json(flashcard);
   });
 });
+
 
 //delete ONE flashcard set
 router.delete('/flashcard/:id', function(req, res) {

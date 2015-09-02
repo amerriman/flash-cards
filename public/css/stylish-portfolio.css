@@ -50,6 +50,14 @@ body {
   display: none;
 }
 
+#flashcards{
+    display: none;
+}
+
+#card-table{
+    display: block;
+}
+
 .text-vertical-center #checkbox-space {
   display: none;
 }

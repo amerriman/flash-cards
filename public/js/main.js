@@ -1,5 +1,28 @@
 $(document).on('ready', function(){
-  // listFlashcards();
+  listCardSets();
+
+});
+
+//want this to....on button click, create the name of the cardset, and then show the create card form and the card table with the title of the cardset shown (and be able to use that to find the cardset in the database and add cards to it) and hide the title part.
+
+$('#create-cards-container').on('submit', function(event){
+  event.preventDefault();
+  //SO MANY THINGS
+  var $question = $('#question').val();
+  var $answer = $('#answer').val();
+  var $name = $("#card-set-name").html();
+
+  var cardPayload = {
+    question: $question,
+    answer: $answer,
+    name: $name
+  };
+
+  $.post('api/flashcards/', cardPayload, function(data){
+    console.log(data, "data");
+
+  });
+
 
 });
 
@@ -7,20 +30,27 @@ $(document).on('ready', function(){
 
 $('#create-cardset-title').on('submit', function(event){
   event.preventDefault();
+  $("#create-cardset-title").css('display','none');
+  $('#create-cards-container').css('display', 'block');
   //form input - cardset name
   var $name = $('#new-title').val();
   var titlePayload = {
     name: $name
   };
+  $("#card-set-name").html($name);
 
   $.post('/api/flashcards', titlePayload, function(data){
-    ///seems like there are other things that need to be here....
+    //clear out the table so it repopulates correctly, and clear out the form
     $('#card-table').html("");
     $(':input', 'form').val('');
-    listFlashcards();
+    // listCardSets();
   });
 });
 
+//with create card form - want on button click for it to push the card to the cardset it belongs in.
+
+
+//This deletes a cardset from the form - though ultimately this needs to look different.  Maybe I need to make two tables until this gets nailed down
 $(document).on('click', '.delete-button', function(){
 
   $.ajax({
@@ -29,7 +59,7 @@ $(document).on('click', '.delete-button', function(){
   }).done(function(data) {
     $("#card-table").html("");
     $( "#results" ).html('Success!');
-    listFlashcards();
+    listCardSets();
   });
 
 });
@@ -48,8 +78,8 @@ var tempHold = [];
 
 
 
-//helper function - this shows ALL cards, but I want it to show the list of questions and answers
-function listFlashcards(){
+//helper function - this shows ALL cards.  Will use this elsewhere later.
+function listCardSets(){
   $.get('/api/flashcards', function(data){
     for (var i = 0; i < data.length; i++) {
       $('#card-table').append(
@@ -64,6 +94,16 @@ function listFlashcards(){
     }
   });
 }
+
+
+// function listFlashCards() {
+//   $.get('/api/flashcard/:id', function(data){
+
+
+
+//   })
+//   // body...
+// }
 
 
 

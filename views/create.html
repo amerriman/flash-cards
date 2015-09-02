@@ -63,21 +63,21 @@
          <form class="form-horizontal " id="create-cards-container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2" id="create-q-and-a">
-                    <h2 class="text-center">Create A Study Card</h2>
+                    <h2 class="text-center">Create A Study Card for <em><span id="card-set-name"></span></em></h2>
                     <div class="form-group">
                         <label for="createQuestion" class="col-md-2 control-label">Question</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control clear-all" id="question" placeholder="Type the question here..." required>
+                            <input type="text" class="form-control clear-all" id="question" name="question" placeholder="Type the question here..." required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="createAnswer" class="col-md-2 control-label">Answer</label>
                         <div class="col-md-8">
-                            <input type="text" class="form-control clear-all" id="answer" placeholder="Type the answer here..." required>
+                            <input type="text" class="form-control clear-all" id="answer" name="answer" placeholder="Type the answer here..." required>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
+                        <div class="col-md-offset-2 col-md-8">
                             <button type="submit" class="btn btn-info" id="create-card-btn">Create Your Flashcard!</button>
                         </div>
                         <div class="form-group">
@@ -98,13 +98,13 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div id="q-a-table-with-review-button">
-                    <table class="table ">
+                    <table class="table" id="flashcards">
                         <caption class="new-cardset">Must deal with this title!</caption>
-                        <tbody class="striped" id="card-table">
-                            <!-- <tr>
+                        <tbody class="striped" >
+                            <tr>
                                 <th>Your Study Questions</th>
                                 <th>Your Study Answers</th>
-                            </tr> -->
+                            </tr>
                         </tbody>
                     </table>
                     <div class="form-group">
@@ -114,6 +114,13 @@
                             </div>
                         </div>
                     </div>
+                    <table class="table" >
+                        <caption class="new-cardset">Must deal with this title!</caption>
+                        <tbody class="striped" id="card-table">
+                            <tr>
+                            </tr>
+                        </tbody>
+                    </table>
                     <div class="form-group">
                         <div class="row col-md-12">
                             <div class="col-md-offset-3 col-md-6">
