@@ -28,4 +28,5 @@ mongoose.model('create_set', SetOfCards);
 
 
 //???Do I need something else here...unclear what this is doing
-mongoose.connect('mongodb://localhost/node-setofcards');
+//mongoose.connect('mongodb://localhost/node-setofcards');
+mongoose.connect(process.env.MONGOLAB_URI || "mongodb://heroku_3kmn6hks:6f59lavhkcntktlhlc6dh7l7be@ds035653.mongolab.com:35653/heroku_3kmn6hks")
