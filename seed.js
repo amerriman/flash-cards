@@ -5,6 +5,7 @@ var SetOfCards = mongoose.model('create_set');
 
 var setOfCardsSeed = [
   {
+    creator : "Ashley",
     name : "Basic Math",
     cards : [
       {
@@ -22,6 +23,7 @@ var setOfCardsSeed = [
     ]
   },
   {
+    creator : "Ashley",
     name : "Javascript",
     cards : [
       {

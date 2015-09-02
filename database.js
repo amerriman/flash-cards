@@ -9,6 +9,8 @@ var Schema   = mongoose.Schema;
 
 var SetOfCards = new Schema(
   {
+    //can I make this a boolean?
+    creator : String,
     name : String,
     cards : [
       {
