@@ -7,79 +7,47 @@ var SetOfCards = mongoose.model('create_set');
 //show ALL flashcards
 router.get('/flashcards', function(req, res) {
   SetOfCards.find(function(err, flashcards){
-    console.log(flashcards);
     res.json(flashcards);
-    // res.render(
-    //   'api',
-    //   {title: 'Flashcard API', flashcards: flashcards}
-    // );
   });
 });
 
 
-//post ALL flashcards
+//show the individual cards
+router.get('/flashcard/:name', function(req, res){
+  // var query = {"name": "Javascript"};
+  var query = {"name": req.params.name};
+  SetOfCards.findOne(query, function(err, flashcard){
+    //console.log(flashcard.cards, "FLASHCARD");
+    if (err){
+      console.log("No cards to show");
+    }
+    res.json(flashcard.cards);
+  });
+});
+
+
+//post ALL flashcards (creates a new flashcard set and cards from /create page)
 router.post('/flashcards', function(req, res) {
-  // findOne by name
   var query = {"name": req.body.name};
   var options = {upsert: true, new: true};
-  var update = {$push: {"cards":{"question": req.body.question, "answer":req.body.answer}}};
+  var update = {"creator":"User", $push: {"cards":{"question": req.body.question, "answer":req.body.answer}}};
   SetOfCards.findOneAndUpdate(query, update, options, function(err, flashcard){
     if (err){
       console.log("Something went wrong");
     }
     else {
-      console.log("COWS");
+      console.log("New Set Created!");
       // res.json()
     }
   });
+  res.end();
 });
 
 
-//This is pushing cards into the array( strange things happen around the 3rd or 4th push), but also creating an empty first card.   Also, it will create a double cards still.  This should just be up to the user to delete.
-
-// //post ALL flashcards
-// router.post('/flashcards', function(req, res) {
-//   // findOne by name
-//   var query = {"name": req.body.name};
-//   SetOfCards.findOne(query, function(err, flashcard){
-//     if(true){
-//       query = {"name": req.body.name};
-//       var options = {safe: true, upsert: true, new: true};
-//       var update = {$push: {"cards":{"question": req.body.question, "answer":req.body.answer}}};
-//       SetOfCards.findOneAndUpdate(query, update, options, function(err, flashcard){});
-//       console.log("COWS");
-//     }
-//     else {
-
-//       new SetOfCards(
-//         {
-//           name : req.body.name,
-//           cards : [
-//             {
-//               question: req.body.question,
-//               answer: req.body.answer
-//             }
-//           ]
-//         })
-//       .save(function(err, flashcard){
-//       res.json({message: 'Success!'});
-//       });
-//     }
-//   });
-// });
-
-
 //get ONE flashcard set
-router.get('/flashcard/:name', function(req, res){
-  var query = {"_id": req.params.id};
+router.get('/flashcard/:id', function(req, res){
+  var query = {"name": req.params.name};
   SetOfCards.findOne(query, function(err, flashcard){
-    //console.log(flashcard);
-    // res.render(
-    //   'flashcard',
-    //   {title: 'Flashcard API - ' + flashcard.name,
-    //   flashcard: flashcard
-    //   }
-    // );
   res.json(flashcard);
   });
 });
@@ -91,25 +59,37 @@ router.put('/flashcard/:id', function(req, res) {
   var update = {name : req.body.name};
   var options = {new: true};
   SetOfCards.findOneAndUpdate(query, update, options, function(err, flashcard){
-    //console.log(flashcard);
-    // res.render(
-    //   'flashcard',
-    //   {title : 'Flashcard API - ' + flashcard.name, flashcard : flashcard}
-    // );
   res.json(flashcard);
   });
 });
 
 
-//delete ONE flashcard set
+//deletes one flashcard (UPDATES the document)
+router.put('/flashcard/:name/:id', function(req, res) {
+  var query = {"name": req.params.name};
+  var id = req.params.id;
+  SetOfCards.findOneAndUpdate(query, {
+    $pull: {
+      "cards": {"_id": id}
+    }
+  }, function(err, flashcard){
+      console.log(flashcard, "FLASHCARD DELETE??");
+      res.json(flashcard);
+    });
+});
+
+
+//delete ONE flashcard SET
 router.delete('/flashcard/:id', function(req, res) {
   var query = {"_id": req.params.id};
+  console.log(query, "SET-QUERY");
   SetOfCards.findOneAndRemove(query, function(err, flashcard){
-    // console.log(flashcard);
+    console.log(flashcard, "SET-sDELETE");
     // res.redirect('/api/flashcards');
     res.json(flashcard);
   });
 });
+
 
 
 module.exports = router;

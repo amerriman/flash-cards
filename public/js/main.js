@@ -4,61 +4,6 @@ $(document).on('ready', function(){
 });
 //temp - holds name for cardset - get rid of this eventually
 var $name;
-
-
-//create cardset and first card.
-$('#create-cards-container').on('submit', function(event){
-  event.preventDefault();
-  //SO MANY THINGS
-  var $question = $('#question').val();
-  var $answer = $('#answer').val();
-  $name = $("#card-set-name").html();
-
-  var payload = {
-    question: $question,
-    answer: $answer,
-    name: $name
-  };
-
-    $('#question').val("");
-    $('#answer').val("");
-
-  $.post('api/flashcards/', payload, function(data){
-    $('#card-table').html("");
-    listCardSets();
-  });
-});
-
-
-//grab cardset title, append to next screen
-$('#create-cardset-title').on('submit', function(event){
-  event.preventDefault();
-  $("#create-cardset-title").css('display','none');
-  $('#create-cards-container').css('display', 'block');
-  $name = $('#new-title').val();
-
-  $("#card-set-name").html($name);
-
-  $('#new-title').val('');
-
-});
-
-
-
-//This deletes a cardset from the form - though ultimately this needs to look different.  Maybe I need to make two tables until this gets nailed down
-$(document).on('click', '.delete-button', function(){
-
-  $.ajax({
-    method: "DELETE",
-    url: '/api/flashcard/'+$(this).attr('id')
-  }).done(function(data) {
-    $("#card-table").html("");
-    $( "#results" ).html('Success!');
-    listCardSets();
-  });
-
-});
-
 //This holds the array of questions that the user has chosen with the radio buttons
 var chosenCardSet = [];
 
@@ -72,12 +17,90 @@ var currentReview = [];
 var tempHold = [];
 
 
+//create cardset and first card.
+$('form').on('submit', function(event){
+  event.preventDefault();
+  var $question = $('#question').val();
+  var $answer = $('#answer').val();
+  $name = $(".card-set-name").html();
+
+  var payload = {
+    question: $question,
+    answer: $answer,
+    name: $name
+  };
+
+    $('#question').val("");
+    $('#answer').val("");
+
+  $.post('api/flashcards/', payload, function(data){
+    //Why do these not work in here?
+    // $('#question').val("");
+    // $('#answer').val("");
+    // $('#card-tableness').html("");
+    // listCardSets();
+    listFlashCards($name);
+    console.log("something's happening here");
+  });
+  listCardSets();
+  $('#user-cards').html("");
+});
+
+
+//grab cardset title, append to next screen
+$(document).on('click', '#create-cardset-btn',function(event){
+  event.preventDefault();
+  if($('#new-title').val()=== ""){
+    alert("You need to enter a title!");
+  } else{
+    $("#create-cardset-title").css('display','none');
+    $('#create-cards-container').css('display', 'block');
+    $name = $('#new-title').val();
+
+    $(".card-set-name").html($name);
+
+    $('#new-title').val('');
+
+    $('#flashcards').css('display', "block");
+  }
+});
+
+
+
+// This deletes a cardset from the form - though ultimately this needs to look different.  Maybe I need to make two tables until this gets nailed down
+$(document).on('click', '.delete-button', function(){
+
+  $.ajax({
+    method: "DELETE",
+    url: '/api/flashcard/'+$(this).attr('id')
+  }).done(function(data) {
+    $("#card-tableness").html("");
+    $( "#results" ).html('Success!');
+
+    listCardSets();
+  });
+});
+
+
+//To remove ONE CARD (PUT because it UPDATES the document)
+$(document).on('click', '.delete-card', function(){
+  $name = $(".card-set-name").html();
+  $.ajax({
+    method: "PUT",
+    url: '/api/flashcard/'+ $(this).attr('name')+ '/' + $(this).attr('id')
+  }).done(function(data) {
+    $("#user-cards").html("");
+    // console.log("MADE IT HERE");
+    listFlashCards($name);
+  });
+});
+
 
 //helper function - this shows ALL cards.  Will use this elsewhere later.
 function listCardSets(){
   $.get('/api/flashcards', function(data){
     for (var i = 0; i < data.length; i++) {
-      $('#card-table').append(
+      $('#card-tableness').append(
         '<tr class="display-to-user">'+
           '<td><a href="#">'+data[i].name+'</a></td>'+
           // '<td>'+data[i].question+'</td>'+
@@ -91,93 +114,20 @@ function listCardSets(){
 }
 
 
-function listFlashCards() {
-  $.get('/api/flashcard/:id', function(data){
-    for (var i = 0; i < data.length; i++) {
-
+//list individual flash cards for user to delete or edit
+function listFlashCards(name) {
+  $.get('/api/flashcard/'+name, function(data){
+    console.log(data, "THIS IS MY DATA");
+    for (var j = 0; j < data.length; j++) {
+      console.log(data[j]._id);
+      console.log(name, "NAME");
+      $('#user-cards').append(
+        "<tr>" +
+        "<td class='questions'>" + data[j].question + "</td>" +
+          "<td class='answers'>" + data[j].answer + "</td>"+
+          '<td><a class="btn btn-danger btn-xs delete-card '+ name +'" id="'+data[j]._id+'" name="'+ name +'" role="button">Delete</a>'+'&nbsp;<a class="btn btn-primary btn-xs edit-card" id="'+data[j]._id+'" name="'+name+'" role="button">Edit</a></td>'+
+          '</tr>'
+      );
     }
-
-
-
   });
-  // body...
 }
-
-
-
-// ///BASE CONSTRUCTORS
-
-// function Card(question, answer){
-//   this.question = question;
-//   this.answer = answer;
-// }
-
-
-// function SetOfCards(name){
-//   this.name = name;
-//   this.cards = [];
-// }
-
-// function MasterCardSet(name){
-//   this.name = name;
-//   this.cardSets = [];
-// }
-
-
-// //////MASTER CLASS FUNCTIONS
-
-// //add a set of cards to the master card array
-// MasterCardSet.prototype.addSet = function(setName){
-//   this.cardSets.push(setName);
-// };
-
-
-// //////SET OF CARD FUNCTIONS
-
-// //add a flash card to the SetOfCards cards array
-// SetOfCards.prototype.addCard = function(card){
-//   this.cards.push(card);
-// };
-
-// SetOfCards.prototype.duplicateQuestionCheck = function(question, answer){
-
-
-// };
-
-
-
-// //Master set for ALL cards
-// var allFlashCards = new MasterCardSet("All Flash Cards");
-
-// //Master set for all USER CREATED cards
-// var userCards = new MasterCardSet("User Cards");
-
-// //hard-coded card-sets
-// var javaScript = new SetOfCards("JavaScript");
-
-// javaScript.cards = [
-//   {question:"TRUE or FALSE - '2' is a string.", answer: "true"},
-//   {question: "The five primitives are boolean, undefined, string, number and _________", answer: "null"},
-//   {question: "The logical operator for 'and' is _________", answer: "&&"},
-// ];
-
-// var basicMath = new SetOfCards("Basic Math");
-
-// basicMath.cards = [
-//   {question:"What is 5 + 5?", answer:"10"},
-//   {question:"What is 2 x 2?", answer:"4"},
-//   {question:"What is 9 / 3?", answer:"3"},
-// ];
-
-// var geography = new SetOfCards("Geography");
-
-// geography.cards = [
-//   {question:"How many continents are there on Earth?", answer:"7"},
-//   {question:"What is the name for a group of islands?", answer:"archipelago"},
-//   {question:"Which ocean borders California?", answer:"The Pacific Ocean"},
-// ];
-
-// //adding hard coded flash cards to master set
-// allFlashCards.addSet(javaScript);
-// allFlashCards.addSet(basicMath);
-// allFlashCards.addSet(geography);

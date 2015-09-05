@@ -8,7 +8,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'FlashCards' });
 });
 
-router.get('/create', function(req, res, next){
+router.get('/create', function(req, res){
   res.render('create');
 });
 
@@ -17,13 +17,6 @@ router.get('/play', function(req, res, next){
 });
 
 
-
-
-
-
-// router.post('', function(req, res){
-
-// });
 
 
 module.exports = router;

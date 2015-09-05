@@ -1,8 +1,7 @@
-//at top here- pull in mongoose, and superheros other pages.
 var mongoose = require('mongoose');
 var SetOfCards = mongoose.model('create_set');
 
-
+//create pre-seeded database
 var setOfCardsSeed = [
   {
     creator : "Ashley",
@@ -42,12 +41,11 @@ var setOfCardsSeed = [
   },
 ];
 
-function databaseSeed(){
 
+function databaseSeed(){
   SetOfCards.find({}, function(err, documents){
     //console.log(documents);
     if(!err && documents.length === 0){
-
       for (var i = 0; i < setOfCardsSeed.length; i++) {
         var newSetOfCards = new SetOfCards(setOfCardsSeed[i]);
         newSetOfCards.save(function(err, success){
@@ -62,6 +60,7 @@ function databaseSeed(){
 }
 
 module.exports = databaseSeed;
+
 //in api.js
 //use post request to model the databaseSeed function
 

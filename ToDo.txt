@@ -1,7 +1,18 @@
 
-1 - When creating cards - make them appear through routes, not with jQuery?  Make sure this is cleared out as soon as the review begins AND/OR when the user goes home or to the cardset page.
-2 - keep the intro screen and the cardset screen the same? I say yes, for now.
+1 - user can update a flash card (do this through jQuery)
 
+2 - keep the intro screen and the cardset screen the same? I say yes, for now.
+  Make a separate area for card reviews
+
+3 - Make it so the user can't delete the seeded sets
+
+4 - add images to the sets
+
+5 - create new way of displaying the cardsets?  Or just modify it?
+
+6 - create a table so that user can see, edit, or delete their cards or the whole set.
+
+7 - figure out how to grab the cards from the database and show them in the current card config.
 
 
 

@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="form-group col-md-6 col-md-offset-3">
-                        <input type="text" class="form-control clear-all" id="new-title" placeholder="Create a title for your flash card set" name="name" required>
+                        <input type="text" class="form-control clear-all" id="new-title" placeholder="Create a title for your flash card set" name="name" required >
                     </div>
                     <div class="col-md-6 col-md-offset-3 text-center">
                         <button type="submit" class="btn btn-info btn-lg" id="create-cardset-btn">Continue</button>
@@ -60,10 +60,10 @@
         <!-- <div class="text-vertical-center" -->
         <!-- </div> -->
 
-         <form class="form-horizontal " id="create-cards-container">
+         <form class="form-horizontal" id="create-cards-container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2" id="create-q-and-a">
-                    <h2 class="text-center">Create A Study Card for <em><span id="card-set-name"></span></em></h2>
+                    <h2 class="text-center">Create A Study Card for <em><span class="card-set-name"></span></em></h2>
                     <div class="form-group">
                         <label for="createQuestion" class="col-md-2 control-label">Question</label>
                         <div class="col-md-8">
@@ -95,44 +95,56 @@
         <!-- make this nicer         -->
         <div id="results"></div>
 
-        <div class="row">
+        <div class="row form-group" id="card-table">
             <div class="col-md-8 col-md-offset-2">
                 <div id="q-a-table-with-review-button">
-                    <table class="table" id="flashcards">
-                        <caption class="new-cardset">Must deal with this title!</caption>
-                        <tbody class="striped" >
+                    <table class="table">
+                        <caption class="new-cardset">Current Cards<!-- <span class="card-set-name"></span> --></caption>
+                        <thead class="striped">
                             <tr>
                                 <th>Your Study Questions</th>
                                 <th>Your Study Answers</th>
+                                <th>Delete/Edit</th>
                             </tr>
+                        </thead>
+                        <tbody class="striped" id="user-cards">
                         </tbody>
                     </table>
-                    <div class="form-group">
-                        <div class="row col-md-12">
-                            <div class="col-md-offset-4 col-md-4">
-                                <button type="submit" class="btn btn-info btn-block begin-review" id="new-set-begin">Begin Review</button>
-                            </div>
-                        </div>
-                    </div>
-                    <table class="table" >
-                        <caption class="new-cardset">Cardsets - Temporary!</caption>
-                        <tbody class="striped" id="card-table">
-                            <tr>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="form-group">
-                        <div class="row col-md-12">
-                            <div class="col-md-offset-3 col-md-6">
-                                <div id="alert-no-cards"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
 
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-md-offset-4 col-md-4">
+                    <button type="button" class="btn btn-info btn-block begin-review" id="new-set-begin">Begin Review</button>
+                </div>
+            </div>
         </div>
+
+        <div class="form-group">
+            <div class="row col-md-12">
+                <div class="col-md-offset-3 col-md-6">
+                    <div id="alert-no-cards"></div>
+                </div>
+            </div>
+       </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <table class="table" >
+                    <caption class="new-cardset">Cardsets - Temporary!</caption>
+                    <tbody class="striped" id="card-tableness">
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
 
     </header>
 

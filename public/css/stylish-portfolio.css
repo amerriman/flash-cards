@@ -225,8 +225,6 @@ input[type=checkbox], input[type=radio] {
 hr.small {
     max-width: 100px;
 }
-/*nav bzr*/
-
 
 
 /* Side Menu */
@@ -246,8 +244,6 @@ hr.small {
     -o-transition: all 0.4s ease 0s;
     transition: all 0.4s ease 0s;
 }
-
-
 
 #menu-toggle {
     z-index: 1;
@@ -321,6 +317,10 @@ hr.small {
 
 table {
     border-top-color: white;
+}
+
+th {
+    text-align: center
 }
 
 /* Portfolio */
