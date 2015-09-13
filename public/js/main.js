@@ -4,6 +4,7 @@ $(document).on('ready', function(){
 });
 //temp - holds name for cardset - get rid of this eventually
 var $name;
+
 //This holds the array of questions that the user has chosen with the radio buttons
 var chosenCardSet = [];
 
@@ -39,11 +40,12 @@ $('form').on('submit', function(event){
     // $('#answer').val("");
     // $('#card-tableness').html("");
     // listCardSets();
+    $('#user-cards').html("");
     listFlashCards($name);
-    console.log("something's happening here");
+    // console.log("something's happening here");
   });
+  $("#card-tableness").html("");
   listCardSets();
-  $('#user-cards').html("");
 });
 
 
@@ -66,7 +68,6 @@ $(document).on('click', '#create-cardset-btn',function(event){
 });
 
 
-
 // This deletes a cardset from the form - though ultimately this needs to look different.  Maybe I need to make two tables until this gets nailed down
 $(document).on('click', '.delete-button', function(){
 
@@ -76,7 +77,6 @@ $(document).on('click', '.delete-button', function(){
   }).done(function(data) {
     $("#card-tableness").html("");
     $( "#results" ).html('Success!');
-
     listCardSets();
   });
 });
@@ -93,7 +93,30 @@ $(document).on('click', '.delete-card', function(){
     // console.log("MADE IT HERE");
     listFlashCards($name);
   });
+
 });
+
+
+$(document).on('click', '#new-set-begin', function(){
+  getCards(readyCards);
+  //this only words if I don't change pages...if page changes then the array is reset and I no longer have access to the cards.  GRRRRR  Maybe the variables can't be global - they need to live in the functions...
+  //or the data grab needs to happen on the other page.  OR can there be a timeout? Or the play cards thing needs to happen on THIS page.
+  //OR USE SESSION STORAGE?
+});
+
+//*****************************WORKING
+function getCards(cb){
+  $name = $(".card-set-name").html();
+  $.ajax({
+    method: "GET",
+    url: '/api/flashcardcards/'+ $name
+  }).done(function(data){
+    cb(data);
+  }).fail(function(err){
+    console.log(err);
+  });
+}
+//******************************
 
 
 //helper function - this shows ALL cards.  Will use this elsewhere later.
@@ -116,11 +139,11 @@ function listCardSets(){
 
 //list individual flash cards for user to delete or edit
 function listFlashCards(name) {
-  $.get('/api/flashcard/'+name, function(data){
-    console.log(data, "THIS IS MY DATA");
+  $.get('/api/flashcardcards/'+name, function(data){
+    // console.log(data, "THIS IS MY DATA");
     for (var j = 0; j < data.length; j++) {
-      console.log(data[j]._id);
-      console.log(name, "NAME");
+      // console.log(data[j]._id);
+      // console.log(name, "NAME");
       $('#user-cards').append(
         "<tr>" +
         "<td class='questions'>" + data[j].question + "</td>" +

@@ -1,5 +1,9 @@
+## Figure out session storage
 
 1 - user can update a flash card (do this through jQuery)
+
+  ###If a user deletes all the cards, there is an empty set.  How to deal with this?  Just an alert?  If there are no cards in the card array then don't display the set?
+
 
 2 - keep the intro screen and the cardset screen the same? I say yes, for now.
   Make a separate area for card reviews
@@ -12,7 +16,9 @@
 
 6 - create a table so that user can see, edit, or delete their cards or the whole set.
 
-7 - figure out how to grab the cards from the database and show them in the current card config.
+7 - figure out how to grab the cards from the database and show them in the current card config on refresh
+
+on #new-set-begin button click, go to the play page, AND, initial all the card stuff
 
 
 

@@ -19,16 +19,31 @@ function findMatchingCardSet(checked){
   }
 }
 
+//TESTING - to use as a callback function
+function readyCards(data){
+  // var currentReview = [];
+  for (var i = 0; i < data.length; i++) {
+    currentReview.push(data[i]);
+  }
+  console.log(currentReview, "CR in ready cards function before shuffle");
+  shuffle(currentReview);
+  console.log(currentReview, "CR in ready cards function after shuffle");
+  showCards(currentReview);
+  console.log(currentReview, "CR in ready cards function after shuffle AND showCards functions");
+  return currentReview;
+}
+
 
 //when user chooses set:
 //shuffle it, and assign it to a global variable array (currentReview)
 function shuffle(arr){
-  var result = [];
+  var result=[];
   var workA = arr;
   while(workA.length > 0) {
     var random = Math.floor(Math.random() * workA.length);
     result.push(workA.splice(random,1)[0]);
     currentReview = result;
+
   }
   return currentReview;
 }
@@ -37,11 +52,12 @@ function shuffle(arr){
 function showCards(arr){
   console.log(arr[0], "arr0");
     currentQuestion = arr.shift(arr[0]);
+    console.log(currentQuestion.question, "cq.q");
     $('.show-cards-question').append('<p>' + currentQuestion.question + '</p>');
 }
 
 //checks user input answer against card answer
-function compareAnswers(userInput){
+function compareAnswers(userInput, currentReview){
   if(userInput === currentQuestion.answer.toLowerCase()){
     renderCorrect();
     return true;
@@ -108,11 +124,11 @@ function duplicateQuestionCheck(question, answer){
           "<td>" + "<a href='#' class='delete'>remove</a>" + "</td>" +
         "</tr>"
        );
-
        $('#question').val('');
        $('#answer').val('');
   }
- //not in the loop
 }
+
+
 
 

@@ -28,7 +28,6 @@ app.set('view engine', 'html');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-//Do I need this one below?  Maybe?
 app.use(methodOverride('_method'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -39,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 app.use('/api', api);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
