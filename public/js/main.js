@@ -1,5 +1,6 @@
 $(document).on('ready', function(){
   listCardSets();
+  checkboxSets();
 
 });
 //temp - holds name for cardset - get rid of this eventually
@@ -134,6 +135,16 @@ function listCardSets(){
           '<td><a class="btn btn-danger btn-xs delete-button" id="'+data[i]._id+'" role="button">Delete</a>'+
           '&nbsp;<a class="btn btn-primary btn-xs edit-button" id="'+data[i]._id+'" role="button">Edit</a></td>'+
           '</tr>'
+      );
+    }
+  });
+}
+
+function checkboxSets(){
+  $.get('/api/flashcards', function(data){
+    for (var i = 0; i < data.length; i++) {
+      $('#cardsets').append(
+        '<label class="radio-inline bigger">'+ '<img class="radio-icons" src="/img/user.png" height="75px" width="75px" alt="user">' + '<br>'+ "<input type='radio' value="+ data[i]._id + " name='cardsets'>"+data[i].name+"</label>"
       );
     }
   });

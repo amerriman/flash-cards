@@ -39,70 +39,9 @@ $(document).on('ready', function() {
   // });
 
 
-  //User creates new cards
-//   $('#create-cards-container').on('submit', function(event){
-//     event.preventDefault();
-//     //grab the user input questions and answers
-//     var newQuestion = $('#question').val();
-//     var newAnswer = $('#answer').val();
-
-//     if (tempHold.cards.length < 1){
-//       var newCard = new Card(newQuestion, newAnswer);
-// //       //add the new card to the new set, which is currently living in a temporary holding variable.
-//       tempHold.addCard(newCard);
-// //       // adds card data to dom in a table
-//       $('#card-table').append(
-//       "<tr class='display-to-user'>" +
-//           "<td class='questions'>" + newQuestion + "</td>" +
-//           "<td class='answers'>" + newAnswer + "</td>" +
-//           "<td>" + "<a href='#' class='delete'>remove</a>" + "</td>" +
-//         "</tr>");
-//       //clear the user input area
-//       $('#question').val('');
-//       $('#answer').val('');
-//     }
-//     else{
-//       duplicateQuestionCheck(newQuestion, newAnswer);
-//     }
-//     //clear the input
-//     $('#question').val('');
-//     $('#answer').val('');
-//   });
 
 
-///!!!!!!!This isn't working maybe because we are storing cards elsewhere - fix this
-  //user click on the 'Begin Review' button
-  // $('#new-set-begin').on('click', function(event){
-  //   event.preventDefault();
-  //   //can't start without cards...
-  //   if(tempHold.cards.length < 1){
-  //     $('#alert-no-cards').append('<div id="alertdiv" class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span>'+"You haven't created any flashcards!"+'</span></div>');
-
-  //     setTimeout(function() {
-  //     $("#alertdiv").remove();
-  //     },  4000);
-  //   }
-  //   else {
-  //   //changes viewing screen to card area
-  //   $('#create-cards-container').css('display','none');
-  //   $("#review-space").css('display','block');
-  //   $('#submit-answer').css('display', 'block');
-  //   $('#next-question').css('display', 'none');
-
-  //   ////!!!!!!!! deal with tempHold - if nothing is in there, then we need to get rid of it.
-  //   //adds user created flashcards to main card array(s)
-  //   chosenCardSet = tempHold.cards.slice(0);
-  //   allFlashCards.addSet(tempHold);
-  //   userCards.addSet(tempHold);
-  //   //starts the review with the most recently created set.
-  //   shuffle(chosenCardSet);
-  //   showCards(currentReview);
-  //   //clears the card creation question and answer table display
-  //   $('.display-to-user').remove();
-  //   }
-  //  });
-
-//!!!!!!!!!  Need to create a route to deal with this perhaps?  Did I do that already?
+//!!!!!!!!!  Need to create a route to deal with this
   //when user chooses a flash card set, the cards are shuffled and the first one is shown
   $('#check-box-start').on('click', function(){
     var chosen = $('input[type="radio"]:checked').val();

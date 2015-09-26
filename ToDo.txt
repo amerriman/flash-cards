@@ -1,12 +1,12 @@
-Need to deal with showing and hiding...
-  #create-cardset-title (creates the title)
-  #create-cards-container (creating the cards - I thought this was dealt with)
-  #begin-review-area - the div that holds the begin review button at the bottom of the create cards page -maybe just put this in with the list cards table
 
-1 - user can update a flash card (do this through jQuery)
+1 - user can update a flash card
 
   ###If a user deletes all the cards, there is an empty set.  How to deal with this?  Just an alert?  If there are no cards in the card array then don't display the set?
 
+
+2A - create a new way to display the pre-made sets (need a function like the one that shows the table - but make it inline and with the images - how do I put an image in there?)
+
+2 - user chooses a pre-made set (find by name) and playing begins
 
 
 
