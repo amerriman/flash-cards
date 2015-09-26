@@ -23,7 +23,7 @@ router.get('/flashcard/:name', function(req, res){
 
 
 //show the individual cards WORKING
-router.get('/flashcardcards/:name', function(req, res){
+router.get('/flashcard/cards/:name', function(req, res){
   var query = {"name": req.params.name};
   SetOfCards.findOne(query, function(err, flashcard){
     if (err){
@@ -52,8 +52,9 @@ router.post('/flashcards', function(req, res) {
 });
 
 
-//update ONE flashcard set - does this even work???
-router.put('/flashcard/:id', function(req, res) {
+//update ONE flashcard set name- does this even work???
+// should be flashcards
+router.put('/flashcards/:id', function(req, res) {
   var query = {"_id": req.params.id};
   var update = {name : req.body.name};
   var options = {new: true};
@@ -79,7 +80,8 @@ router.put('/flashcard/:name/:id', function(req, res) {
 
 
 //delete ONE flashcard SET  WORKING
-router.delete('/flashcard/:id', function(req, res) {
+//should be flashcards
+router.delete('/flashcards/:id', function(req, res) {
   var query = {"_id": req.params.id};
   // console.log(query, "SET-QUERY");
   SetOfCards.findOneAndRemove(query, function(err, flashcard){

@@ -41,10 +41,14 @@ body {
 .text-vertical-center .initial{
   border: none;
 }
-
+/*!!!!!!! double - which one works?*/
 .text-vertical-center #create-cardset-title {
-  display: block;
+  display: none;
 }
+
+/*#create-cardset-title {
+  display: block;
+}*/
 
 #create-cards-container{
   display: none;
@@ -55,7 +59,7 @@ body {
 }
 
 #card-table{
-    display: block;
+    display: none;
 }
 
 .text-vertical-center #checkbox-space {
@@ -67,7 +71,7 @@ body {
 }
 
 #review-space {
-  /*display: none;*/
+  display: none;
 }
 
 .show-cards {
@@ -188,6 +192,10 @@ input[type=checkbox], input[type=radio] {
 
 .navbar {
     background-color: #35393c;
+}
+
+.centered {
+    text-align: center;
 }
 
 

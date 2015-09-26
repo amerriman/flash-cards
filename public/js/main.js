@@ -24,7 +24,6 @@ $('form').on('submit', function(event){
   var $question = $('#question').val();
   var $answer = $('#answer').val();
   $name = $(".card-set-name").html();
-
   var payload = {
     question: $question,
     answer: $answer,
@@ -42,12 +41,15 @@ $('form').on('submit', function(event){
     // listCardSets();
     $('#user-cards').html("");
     listFlashCards($name);
+    $('#card-table').css('display', 'block');
     // console.log("something's happening here");
   });
   $("#card-tableness").html("");
   listCardSets();
 });
 
+
+//*********************add the name to the link on my button here
 
 //grab cardset title, append to next screen
 $(document).on('click', '#create-cardset-btn',function(event){
@@ -58,11 +60,8 @@ $(document).on('click', '#create-cardset-btn',function(event){
     $("#create-cardset-title").css('display','none');
     $('#create-cards-container').css('display', 'block');
     $name = $('#new-title').val();
-
     $(".card-set-name").html($name);
-
     $('#new-title').val('');
-
     $('#flashcards').css('display', "block");
   }
 });
@@ -70,10 +69,9 @@ $(document).on('click', '#create-cardset-btn',function(event){
 
 // This deletes a cardset from the form - though ultimately this needs to look different.  Maybe I need to make two tables until this gets nailed down
 $(document).on('click', '.delete-button', function(){
-
   $.ajax({
     method: "DELETE",
-    url: '/api/flashcard/'+$(this).attr('id')
+    url: '/api/flashcards/'+$(this).attr('id')
   }).done(function(data) {
     $("#card-tableness").html("");
     $( "#results" ).html('Success!');
@@ -99,18 +97,23 @@ $(document).on('click', '.delete-card', function(){
 
 $(document).on('click', '#new-set-begin', function(){
   getCards(readyCards);
-  //this only words if I don't change pages...if page changes then the array is reset and I no longer have access to the cards.  GRRRRR  Maybe the variables can't be global - they need to live in the functions...
-  //or the data grab needs to happen on the other page.  OR can there be a timeout? Or the play cards thing needs to happen on THIS page.
-  //OR USE SESSION STORAGE?
+
+  $('#create-cards-container').css('display','none');
+  $("#review-space").css('display','block');
+  $('#submit-answer').css('display', 'block');
+  // $('#next-question').css('display', 'none');
+  $('#new-set-begin').css('display', 'none');
+  $('#card-table').css('display', 'none');
 });
 
-//*****************************WORKING
+//*****************************WORKING - use this for the checkbox button too
 function getCards(cb){
   $name = $(".card-set-name").html();
   $.ajax({
     method: "GET",
-    url: '/api/flashcardcards/'+ $name
-  }).done(function(data){
+    url: '/api/flashcard/cards/'+ $name
+  })
+  .done(function(data){
     cb(data);
   }).fail(function(err){
     console.log(err);
@@ -139,7 +142,7 @@ function listCardSets(){
 
 //list individual flash cards for user to delete or edit
 function listFlashCards(name) {
-  $.get('/api/flashcardcards/'+name, function(data){
+  $.get('/api/flashcard/cards/'+name, function(data){
     // console.log(data, "THIS IS MY DATA");
     for (var j = 0; j < data.length; j++) {
       // console.log(data[j]._id);

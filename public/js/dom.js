@@ -7,30 +7,35 @@ $(document).on('ready', function() {
   });
 
   //shows user the create card-set title screen
-  // $('#create-own').on('click', function(){
-  //   $('.initial').css('display', 'none');
-  //   $('#create-cardset-title').css('display','block');
-  // });
+  $('#create-own').on('click', function(){
+    $('.initial').css('display', 'none');
+    $('#create-cardset-title').css('display','block');
+  });
 
 
   //User creates new cardset - with no cards yet
-  // $('#create-cardset-title').on('submit', function(event){
+  $('#create-cardset-title').on('submit', function(event){
+    event.preventDefault();
+    //grab user input name for card set
+    var userInputtedTitle = $('#new-title').val();
+    //creates new instance of SetOfCards with user title
+    var newTitle = new SetOfCards(userInputtedTitle);
+    //adds the new cardset title to the already created cards section
+    $('#cardsets').append('<label class="radio-inline bigger">' + '<img class="radio-icons" src="img/user.png" height="75px" width="75px" alt="user-created">' + '<br>' + '<input type="radio" name="cardsets" value="'+ userInputtedTitle + '">' + newTitle.name + '</label');
+    //holds the new cardset temporarily so we can add cards to it
+    tempHold = newTitle;
+    // removes the "create a title" div and displays the 'create questions and answers' div
+    $('#create-cardset-title').css('display','none');
+    $("#create-cards-container").css('display','block');
+    // appends new title to new card set page
+    $(".new-cardset").html(userInputtedTitle);
+    //clear the user input field
+    $('#new-title').val('');
+  });
+
+  // $('#create-card-btn').on('click', function(event){
   //   event.preventDefault();
-  //   //grab user input name for card set
-  //   var userInputtedTitle = $('#new-title').val();
-  //   //creates new instance of SetOfCards with user title
-  //   var newTitle = new SetOfCards(userInputtedTitle);
-  //   //adds the new cardset title to the already created cards section
-  //   $('#cardsets').append('<label class="radio-inline bigger">' + '<img class="radio-icons" src="img/user.png" height="75px" width="75px" alt="user-created">' + '<br>' + '<input type="radio" name="cardsets" value="'+ userInputtedTitle + '">' + newTitle.name + '</label');
-  //   //holds the new cardset temporarily so we can add cards to it
-  //   tempHold = newTitle;
-  //   // removes the "create a title" div and displays the 'create questions and answers' div
-  //   $('#create-cardset-title').css('display','none');
-  //   $("#create-cards-container").css('display','block');
-  //   // appends new title to new card set page
-  //   $(".new-cardset").html(userInputtedTitle);
-  //   //clear the user input field
-  //   $('#new-title').val('');
+  //   $('#card-table').css('display', 'block');
   // });
 
 
@@ -65,7 +70,7 @@ $(document).on('ready', function() {
 //   });
 
 
-
+///!!!!!!!This isn't working maybe because we are storing cards elsewhere - fix this
   //user click on the 'Begin Review' button
   // $('#new-set-begin').on('click', function(event){
   //   event.preventDefault();
@@ -83,6 +88,8 @@ $(document).on('ready', function() {
   //   $("#review-space").css('display','block');
   //   $('#submit-answer').css('display', 'block');
   //   $('#next-question').css('display', 'none');
+
+  //   ////!!!!!!!! deal with tempHold - if nothing is in there, then we need to get rid of it.
   //   //adds user created flashcards to main card array(s)
   //   chosenCardSet = tempHold.cards.slice(0);
   //   allFlashCards.addSet(tempHold);
@@ -95,7 +102,7 @@ $(document).on('ready', function() {
   //   }
   //  });
 
-
+//!!!!!!!!!  Need to create a route to deal with this perhaps?  Did I do that already?
   //when user chooses a flash card set, the cards are shuffled and the first one is shown
   $('#check-box-start').on('click', function(){
     var chosen = $('input[type="radio"]:checked').val();
@@ -117,7 +124,7 @@ $(document).on('ready', function() {
 
 
   //when users submits with the 'Check Answer' button it checks the answer, and displays a correct, or incorect message.  Also clears the user input field.  Will not allow a blank field. It then hides the check answer button and shows the next question button
-  $('#submit-answer').on('submit', function(event){
+  $('#submit-user-answer-btn').on('click', function(event){
     event.preventDefault();
     //user answer is grabbed and lowercased
     var userAnswer = $('#user-answer').val().toLowerCase();
@@ -185,6 +192,7 @@ $(document).on('ready', function() {
     $('.clear-all').val('');
     $('#show-cards-main').removeClass('flipped');
     $('#show-cards-wrapper').removeClass('flipped');
+    //What is this???
     $('.display-to-user').remove();
     $('input[type="radio"]').prop('checked', false);
     $('.show-cards').html(" ");
@@ -205,6 +213,7 @@ $(document).on('ready', function() {
     $('.clear-all').val('');
     $('#show-cards-main').removeClass('flipped');
     $('#show-cards-wrapper').removeClass('flipped');
+    //What is this???
     $('.display-to-user').remove();
     $('input[type="radio"]').prop('checked', false);
     $('.show-cards').html(" ");
