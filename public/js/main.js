@@ -144,7 +144,7 @@ function checkboxSets(){
   $.get('/api/flashcards', function(data){
     for (var i = 0; i < data.length; i++) {
       $('#cardsets').append(
-        '<label class="radio-inline bigger">'+ '<img class="radio-icons" src="/img/user.png" height="75px" width="75px" alt="user">' + '<br>'+ "<input type='radio' value="+ data[i]._id + " name='cardsets'>"+data[i].name+"</label>"
+        '<label class="radio-inline bigger">'+ '<img class="radio-icons" src="' + data[i].image + '" height="75px" width="75px" alt="user">' + '<br>'+ "<input type='radio' value="+ data[i]._id + " name='cardsets'>"+data[i].name+"</label>"
       );
     }
   });

@@ -38,7 +38,7 @@ router.get('/flashcard/cards/:name', function(req, res){
 router.post('/flashcards', function(req, res) {
   var query = {"name": req.body.name};
   var options = {upsert: true, new: true};
-  var update = {"creator":"User", $push: {"cards":{"question": req.body.question, "answer":req.body.answer}}};
+  var update = {"creator":"User", image: "http://www.homeadinc.com/hsb/wp-content/uploads/2015/02/GenericProfilePhoto-Blue-Round.png", $push: {"cards":{"question": req.body.question, "answer":req.body.answer}}};
   SetOfCards.findOneAndUpdate(query, update, options, function(err, flashcard){
     if (err){
       console.log("Something went wrong");

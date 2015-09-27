@@ -7,6 +7,7 @@ var SetOfCards = new Schema(
   {
     creator : String,
     name : String,
+    image: String,
     cards : [
       {
         question : String,

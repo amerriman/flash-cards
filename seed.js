@@ -6,6 +6,7 @@ var setOfCardsSeed = [
   {
     creator : "Ashley",
     name : "Basic Math",
+    image: 'http://mathforkeeps.com/img/math_number.jpg',
     cards : [
       {
         question : "What is 2 + 2",
@@ -24,6 +25,7 @@ var setOfCardsSeed = [
   {
     creator : "Ashley",
     name : "Javascript",
+    image: 'http://www.seoexpresso.com/wp-content/uploads/2014/11/javascript.png',
     cards : [
       {
         question : "TRUE or FALSE - '2' is a string.",
