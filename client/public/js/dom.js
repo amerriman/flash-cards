@@ -13,25 +13,25 @@ $(document).on('ready', function() {
   });
 
 
-  //User creates new cardset - with no cards yet
-  $('#create-cardset-title').on('submit', function(event){
-    event.preventDefault();
-    //grab user input name for card set
-    var userInputtedTitle = $('#new-title').val();
-    //creates new instance of SetOfCards with user title
-    var newTitle = new SetOfCards(userInputtedTitle);
-    //adds the new cardset title to the already created cards section
-    $('#cardsets').append('<label class="radio-inline bigger">' + '<img class="radio-icons" src="img/user.png" height="75px" width="75px" alt="user-created">' + '<br>' + '<input type="radio" name="cardsets" value="'+ userInputtedTitle + '">' + newTitle.name + '</label');
-    //holds the new cardset temporarily so we can add cards to it
-    tempHold = newTitle;
-    // removes the "create a title" div and displays the 'create questions and answers' div
-    $('#create-cardset-title').css('display','none');
-    $("#create-cards-container").css('display','block');
-    // appends new title to new card set page
-    $(".new-cardset").html(userInputtedTitle);
-    //clear the user input field
-    $('#new-title').val('');
-  });
+  // //User creates new cardset - with no cards yet
+  // $('#create-cardset-title').on('submit', function(event){
+  //   event.preventDefault();
+  //   //grab user input name for card set
+  //   var userInputtedTitle = $('#new-title').val();
+  //   //creates new instance of SetOfCards with user title
+  //   var newTitle = new SetOfCards(userInputtedTitle);
+  //   //adds the new cardset title to the already created cards section
+  //   $('#cardsets').append('<label class="radio-inline bigger">' + '<img class="radio-icons" src="img/user.png" height="75px" width="75px" alt="user-created">' + '<br>' + '<input type="radio" name="cardsets" value="'+ userInputtedTitle + '">' + newTitle.name + '</label');
+  //   //holds the new cardset temporarily so we can add cards to it
+  //   tempHold = newTitle;
+  //   // removes the "create a title" div and displays the 'create questions and answers' div
+  //   $('#create-cardset-title').css('display','none');
+  //   $("#create-cards-container").css('display','block');
+  //   // appends new title to new card set page
+  //   $(".new-cardset").html(userInputtedTitle);
+  //   //clear the user input field
+  //   $('#new-title').val('');
+  // });
 
   // $('#create-card-btn').on('click', function(event){
   //   event.preventDefault();
@@ -41,7 +41,6 @@ $(document).on('ready', function() {
 
 
 
-//!!!!!!!!!  Need to create a route to deal with this
   //when user chooses a flash card set, the cards are shuffled and the first one is shown
   $('#check-box-start').on('click', function(){
     var chosen = $('input[type="radio"]:checked').val();
@@ -50,14 +49,12 @@ $(document).on('ready', function() {
       showAlert("Please choose a card set!");
     }
     else{
+      getCheckedCards(readyCards);
       $('input[type="radio"]').prop('checked', false);
       $('#checkbox-space').css('display','none');
       $("#review-space").css('display','block');
       $('#submit-answer').css('display', 'block');
       $('#next-question').css('display', 'none');
-      findMatchingCardSet(chosen);
-      shuffle(chosenCardSet);
-      showCards(currentReview);
     }
   });
 
@@ -120,45 +117,27 @@ $(document).on('ready', function() {
     $('.navbar').removeAttr('style');
   });
 
-  //if user clicks on the 'FlashCards Home' in the nav bar - They are taken back to the main page and everything else is reset
-  $('.take-me-home').on('click', function(){
-    $('.navbar').removeAttr('style');
-    $('#create-cardset-title').css('display', 'none');
-    $('#checkbox-space').css('display', 'none');
-    $('#review-space').css('display', 'none');
-    $('#create-cards-container').css('display', 'none');
-    $('#study-more').css('display', 'none');
-    $('.clear-all').val('');
-    $('#show-cards-main').removeClass('flipped');
-    $('#show-cards-wrapper').removeClass('flipped');
-    //What is this???
-    $('.display-to-user').remove();
-    $('input[type="radio"]').prop('checked', false);
-    $('.show-cards').html(" ");
-    $('.header').css('background-image','url(img/blue.jpg)');
-    $('.initial').css('display', 'block');
-  });
 
-
+//PROBLEMATIC
   //if the user clicks on the CardSets, everything is cleared and they go to the choose a cardset page
-    $('.to-the-cards').on('click', function(){
-    $('.navbar').css('background-color', '35393c');
-    $('.initial').css('display', 'none');
-    $('#create-cardset-title').css('display', 'none');
-    $('#checkbox-space').css('display', 'none');
-    $('#review-space').css('display', 'none');
-    $('#create-cards-container').css('display', 'none');
-    $('#study-more').css('display', 'none');
-    $('.clear-all').val('');
-    $('#show-cards-main').removeClass('flipped');
-    $('#show-cards-wrapper').removeClass('flipped');
-    //What is this???
-    $('.display-to-user').remove();
-    $('input[type="radio"]').prop('checked', false);
-    $('.show-cards').html(" ");
-    $('.header').css('background-image','url(img/blue.jpg)');
-    $('#checkbox-space').css('display','block');
-  });
+  // $('.to-the-cards').on('click', function(){
+  //   $('.navbar').css('background-color', '35393c');
+  //   $('.initial').css('display', 'none');
+  //   $('#create-cardset-title').css('display', 'none');
+  //   $('#checkbox-space').css('display', 'none');
+  //   $('#review-space').css('display', 'none');
+  //   $('#create-cards-container').css('display', 'none');
+  //   $('#study-more').css('display', 'none');
+  //   $('.clear-all').val('');
+  //   $('#show-cards-main').removeClass('flipped');
+  //   $('#show-cards-wrapper').removeClass('flipped');
+  //   //What is this???
+  //   $('.display-to-user').remove();
+  //   $('input[type="radio"]').prop('checked', false);
+  //   $('.show-cards').html(" ");
+  //   $('.header').css('background-image','url(img/blue.jpg)');
+  //   $('#checkbox-space').css('display','block');
+  // });
 
 
 });

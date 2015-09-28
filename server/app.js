@@ -1,5 +1,5 @@
 // mongoose config
-require('./database');
+require('./models/flashcards.js');
 
 var express = require('express');
 var path = require('path');
@@ -9,14 +9,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
 var methodOverride = require('method-override');
+var mongoose = require('mongoose');
 
 //seed database
-var databaseSeed = require('./seed');
+var databaseSeed = require('../seed');
 databaseSeed();
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-var api = require('./routes/api');
+var routes = require('./routes/index.js');
+var users = require('./routes/users.js');
+var api = require('./routes/api.js');
 
 var app = express();
 
@@ -33,7 +34,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../client/public')));
 
 app.use('/', routes);
 app.use('/users', users);

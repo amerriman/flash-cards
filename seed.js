@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
-var SetOfCards = mongoose.model('create_set');
+// var SetOfCards = mongoose.model('create_set');
+var SetOfCards = require('./server/models/flashcards.js');
+
 
 //create pre-seeded database
 var setOfCardsSeed = [

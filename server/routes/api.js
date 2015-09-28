@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var SetOfCards = mongoose.model('create_set');
+// var SetOfCards = mongoose.model('create_set');
+var SetOfCards = require('../models/flashcards.js');
 
 
 //show ALL flashcards  WORKING
@@ -13,6 +14,7 @@ router.get('/flashcards', function(req, res) {
 
 
 //get ONE flashcard set WORKING
+//should be flashcards?
 router.get('/flashcard/:name', function(req, res){
   var query = {"name": req.params.name};
   SetOfCards.findOne(query, function(err, flashcards){
@@ -22,10 +24,24 @@ router.get('/flashcard/:name', function(req, res){
 });
 
 
-//show the individual cards WORKING
+//get the cards array by name WORKING
+// should be flashcards
 router.get('/flashcard/cards/:name', function(req, res){
   var query = {"name": req.params.name};
   SetOfCards.findOne(query, function(err, flashcard){
+    if (err){
+      console.log("No cards to show");
+    }
+    res.json(flashcard.cards);
+  });
+});
+
+
+//get the cards array by id
+// should be flashcards
+router.get('/flashcard/cardsID/:id', function(req, res){
+  var query = {"_id": req.params.id};
+  SetOfCards.findById(query, function(err, flashcard){
     if (err){
       console.log("No cards to show");
     }
@@ -64,7 +80,8 @@ router.put('/flashcards/:id', function(req, res) {
 });
 
 
-//deletes one flashcard (UPDATES the document) WORKING
+//deletes one individual flashcard (UPDATES the document) WORKING
+// should be flashcards/cards/name/id?
 router.put('/flashcard/:name/:id', function(req, res) {
   var query = {"name": req.params.name};
   var id = req.params.id;

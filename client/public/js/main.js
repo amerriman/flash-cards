@@ -97,7 +97,7 @@ $(document).on('click', '.delete-card', function(){
 
 
 $(document).on('click', '#new-set-begin', function(){
-  getCards(readyCards);
+  getNewCards(readyCards);
 
   $('#create-cards-container').css('display','none');
   $("#review-space").css('display','block');
@@ -108,7 +108,7 @@ $(document).on('click', '#new-set-begin', function(){
 });
 
 //*****************************WORKING - use this for the checkbox button too
-function getCards(cb){
+function getNewCards(cb){
   $name = $(".card-set-name").html();
   $.ajax({
     method: "GET",
@@ -122,6 +122,19 @@ function getCards(cb){
 }
 //******************************
 
+function getCheckedCards(cb){
+  $id = $('input[type="radio"]:checked').val();
+  console.log($id, 'NAME');
+  $.ajax({
+    method: "GET",
+    url: '/api/flashcard/cardsID/'+ $id
+  })
+  .done(function(data){
+    cb(data);
+  }).fail(function(err){
+    console.log(err);
+  });
+}
 
 //helper function - this shows ALL cards.  Will use this elsewhere later.
 function listCardSets(){

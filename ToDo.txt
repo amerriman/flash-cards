@@ -18,7 +18,7 @@
 
 6 - create a table so that user can see, edit, or delete their cards or the whole set.
 
-
+7 - if user gets all the way through the set and they want to play again, any link to "home" should refresh the actual page maybe...otherwise the newest card set created doesn't show up
 
 
 QUESTIONS -
