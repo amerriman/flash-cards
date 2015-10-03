@@ -1,6 +1,7 @@
 // mongoose config
 require('./models/flashcards.js');
-
+//added with dotenv install
+require('dotenv').load();
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -20,6 +21,18 @@ var users = require('./routes/users.js');
 var api = require('./routes/api.js');
 
 var app = express();
+
+// *** config file *** //
+var config = require('./_config');
+
+// *** mongoose *** ///
+mongoose.connect(config.mongoURI[app.settings.env], function(err, res){
+if(err) {
+console.log('Error connecting to the database. ' + err);
+} else {
+console.log('Connected to Database: ' + config.mongoURI[app.settings.env]);
+}
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

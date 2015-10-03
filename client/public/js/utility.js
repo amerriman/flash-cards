@@ -7,17 +7,6 @@ function showAlert(message) {
   }, 4000);
 }
 
-//THIS NO LONGER WORKS - This needs to be a new function that grabs the set based on the input id
-//Find user chosenset of flash cards in the master flash card array
-//Creates a copy of flash cards into 'chosenArray'
-function findMatchingCardSet(checked){
-  for(i = 0; i < allFlashCards.cardSets.length; i++){
-    if(allFlashCards.cardSets[i].name === checked){
-      chosenCardSet = allFlashCards.cardSets[i].cards.slice(0);
-      return chosenCardSet;
-    }
-  }
-}
 
 //Working - callback function to be used with getNewCards function
 function readyCards(data){
