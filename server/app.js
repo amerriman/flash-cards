@@ -24,22 +24,21 @@ var app = express();
 var config = require('./_config');
 
 // *** mongoose *** ///
-mongoose.connect(config.mongoURI[app.settings.env], function(err, res){
+mongoose.connect(config.MONGOLAB_URI[app.settings.env], function(err, res){
 if(err) {
 console.log('Error connecting to the database. ' + err);
 } else {
 console.log('Connected to Database: ' + config.mongoURI[app.settings.env]);
 }
 });
-
+// MONGOLAB_URI
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 var swig = new swig.Swig();
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// *** config middleware *** //
 app.use(methodOverride('_method'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
