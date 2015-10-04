@@ -21,7 +21,7 @@ var api = require('./routes/api.js');
 var app = express();
 
 // *** config file *** //
-var config = require('./_config');
+var config = require('./config');
 
 // *** mongoose *** ///
 mongoose.connect(config.mongoURI[app.settings.env], function(err, res){
