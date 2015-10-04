@@ -57,7 +57,7 @@ function databaseSeed(){
           console.log(
             'database seeded!');
           }
-        })
+        });
       }
     }
   });
