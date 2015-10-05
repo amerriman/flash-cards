@@ -1,4 +1,5 @@
 // mongoose config
+require('dotenv').load();
 require('./models/flashcards.js');
 var express = require('express');
 var path = require('path');
