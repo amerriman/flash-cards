@@ -175,9 +175,18 @@ function listFlashCards(name) {
         "<tr>" +
         "<td class='questions'>" + data[j].question + "</td>" +
           "<td class='answers'>" + data[j].answer + "</td>"+
-          '<td><a class="btn btn-danger btn-xs delete-card '+ name +'" id="'+data[j]._id+'" name="'+ name +'" role="button">Delete</a>'+'&nbsp;<a class="btn btn-primary btn-xs edit-card" id="'+data[j]._id+'" name="'+name+'" role="button">Edit</a></td>'+
-          '</tr>'
+          '<td><a class="delete-card '+ name +'" id="'+data[j]._id+'" name="'+ name +'" role="button"><span class="glyphicon glyphicon-trash"></span></a>'+'</tr>'
       );
     }
   });
 }
+
+//keep for when edit works
+
+      // $('#user-cards').append(
+      //   "<tr>" +
+      //   "<td class='questions'>" + data[j].question + "</td>" +
+      //     "<td class='answers'>" + data[j].answer + "</td>"+
+      //     '<td><a class="delete-card '+ name +'" id="'+data[j]._id+'" name="'+ name +'" role="button"><span class="glyphicon glyphicon-trash"></span></a>'+'&nbsp;<a class="btn btn-primary btn-xs edit-card" id="'+data[j]._id+'" name="'+name+'" role="button">Edit</a></td>'+
+      //     '</tr>'
+      // );

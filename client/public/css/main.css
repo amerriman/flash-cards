@@ -40,10 +40,17 @@ body {
 
 .text-vertical-center .initial{
   border: none;
+  margin-bottom: 100px;
 }
 /*!!!!!!! double - which one works?*/
 .text-vertical-center #create-cardset-title {
   display: none;
+  margin-bottom: 150px;
+}
+
+.centered {
+  margin: 0 auto;
+  text-align: center
 }
 
 /*#create-cardset-title {
@@ -52,7 +59,9 @@ body {
 
 #create-cards-container{
   display: none;
+  margin-bottom: 30px;
 }
+
 
 #flashcards{
     display: none;
@@ -145,7 +154,7 @@ body {
 #study-more-btn {
     background-color: #FF6D46;
     color: white;
-    margin-top: 260px;
+    margin-bottom: 160px;
     border: 1px solid black;
 }
 
@@ -376,4 +385,13 @@ th {
 footer {
     padding: 100px 0;
 }
+
+.table {
+    background-color: transparent;
+}
+
+.glyphicon-trash {
+    color: red;
+}
+
 

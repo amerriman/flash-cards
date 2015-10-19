@@ -4,25 +4,11 @@
   ###If a user deletes all the cards, there is an empty set.  How to deal with this?  Just an alert?  If there are no cards in the card array then don't display the set?
 
 
-2A - create a new way to display the pre-made sets (need a function like the one that shows the table - but make it inline and with the images - how do I put an image in there?)
-
-2 - user chooses a pre-made set (find by name) and playing begins
-
-
-
-3 - Make it so the user can't delete the seeded sets
-
-4 - add images to the sets in the database - a link to an image maybe?
-
-5 - create new way of displaying the cardsets?  Or just modify it?
-
 6 - create a table so that user can see, edit, or delete their cards or the whole set.
 
-7 - if user gets all the way through the set and they want to play again, any link to "home" should refresh the actual page maybe...otherwise the newest card set created doesn't show up
 
 
 QUESTIONS -
-
 
 
 * Eventually, I want users to only see the cards they create, plus maybe a generalized starter set of ones that are available to all as a sample.  How do I best set myself up for this.
