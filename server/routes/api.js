@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-// var SetOfCards = mongoose.model('create_set');
 var SetOfCards = require('../models/flashcards.js');
 
 
@@ -95,14 +94,11 @@ router.put('/flashcards/:id', function(req, res) {
 router.put('/flashcard/:name/:id', function(req, res) {
   var query = {"name": req.params.name};
   var id = req.params.id;
-  // console.log(query, "Query")
-  // console.log(id, 'id')
   SetOfCards.findOneAndUpdate(query, {
     $pull: {
       "cards": {"_id": id}
     }
   }, function(err, flashcard){
-      console.log(flashcard, "FLASHCARD DELETE??");
       res.json(flashcard);
     });
 });
@@ -112,9 +108,7 @@ router.put('/flashcard/:name/:id', function(req, res) {
 //should be flashcards
 router.delete('/flashcards/:id', function(req, res) {
   var query = {"_id": req.params.id};
-  // console.log(query, "SET-QUERY");
   SetOfCards.findOneAndRemove(query, function(err, flashcard){
-    // console.log(flashcard, "SET-sDELETE");
     res.json(flashcard);
   });
 });

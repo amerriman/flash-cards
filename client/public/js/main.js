@@ -7,7 +7,7 @@ $(document).on('ready', function(){
 var $name;
 
 //This holds the array of questions that the user has chosen with the radio buttons
-var chosenCardSet = [];
+// var chosenCardSet = [];
 
 //This holds the current card object that the user is reviewing
 var currentQuestion =[];
@@ -43,14 +43,11 @@ $('form').on('submit', function(event){
     $('#user-cards').html("");
     listFlashCards($name);
     $('#card-table').css('display', 'block');
-    // console.log("something's happening here");
   });
   $("#card-tableness").html("");
   listCardSets();
 });
 
-
-//*********************add the name to the link on my button here
 
 //grab cardset title, append to next screen
 $(document).on('click', '#create-cardset-btn',function(event){
@@ -68,7 +65,7 @@ $(document).on('click', '#create-cardset-btn',function(event){
 });
 
 
-// This deletes a cardset from the form - though ultimately this needs to look different.  Maybe I need to make two tables until this gets nailed down
+// delete a cardSET from the form (form not visible to users currently)
 $(document).on('click', '.delete-button', function(){
   $.ajax({
     method: "DELETE",
@@ -81,7 +78,7 @@ $(document).on('click', '.delete-button', function(){
 });
 
 
-//To remove ONE CARD (PUT because it UPDATES the document)
+//To remove ONE CARD
 $(document).on('click', '.delete-card', function(){
   $name = $(".card-set-name").html();
   $.ajax({
@@ -89,16 +86,14 @@ $(document).on('click', '.delete-card', function(){
     url: '/api/flashcard/'+ $(this).attr('name')+ '/' + $(this).attr('id')
   }).done(function(data) {
     $("#user-cards").html("");
-    // console.log("MADE IT HERE");
     listFlashCards($name);
   });
 
 });
 
-
+//begin to review with new created set
 $(document).on('click', '#new-set-begin', function(){
   getNewCards(readyCards);
-
   $('#create-cards-container').css('display','none');
   $("#review-space").css('display','block');
   $('#submit-answer').css('display', 'block');
@@ -107,7 +102,8 @@ $(document).on('click', '#new-set-begin', function(){
   $('#card-table').css('display', 'none');
 });
 
-//*****************************WORKING - use this for the checkbox button too
+
+//used directly above
 function getNewCards(cb){
   $name = $(".card-set-name").html();
   $.ajax({
@@ -120,11 +116,11 @@ function getNewCards(cb){
     console.log(err);
   });
 }
-//******************************
 
+
+//used for radioselect cards
 function getCheckedCards(cb){
   $id = $('input[type="radio"]:checked').val();
-  console.log($id, 'NAME');
   $.ajax({
     method: "GET",
     url: '/api/flashcard/cardsID/'+ $id
@@ -153,6 +149,7 @@ function listCardSets(){
   });
 }
 
+//show already created cardsets
 function checkboxSets(){
   $.get('/api/flashcards', function(data){
     for (var i = 0; i < data.length; i++) {
@@ -167,10 +164,7 @@ function checkboxSets(){
 //list individual flash cards for user to delete or edit
 function listFlashCards(name) {
   $.get('/api/flashcard/cards/'+name, function(data){
-    // console.log(data, "THIS IS MY DATA");
     for (var j = 0; j < data.length; j++) {
-      // console.log(data[j]._id);
-      // console.log(name, "NAME");
       $('#user-cards').append(
         "<tr>" +
         "<td class='questions'>" + data[j].question + "</td>" +
@@ -182,7 +176,6 @@ function listFlashCards(name) {
 }
 
 //keep for when edit works
-
       // $('#user-cards').append(
       //   "<tr>" +
       //   "<td class='questions'>" + data[j].question + "</td>" +

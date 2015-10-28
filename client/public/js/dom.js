@@ -104,7 +104,6 @@ $(document).on('ready', function() {
 
   //if user clicks "study more", they are directed 'home'
   $('#study-more-btn').on('click', function(){
-    console.log("ARAREARWER");
     //show main choice area, hide review area
     $('#submit-answer').css('display','block');
     $('.show-cards').html("");
@@ -116,28 +115,6 @@ $(document).on('ready', function() {
     $('.initial').css('display', 'block');
     $('.navbar').removeAttr('style');
   });
-
-
-//PROBLEMATIC
-  //if the user clicks on the CardSets, everything is cleared and they go to the choose a cardset page
-  // $('.to-the-cards').on('click', function(){
-  //   $('.navbar').css('background-color', '35393c');
-  //   $('.initial').css('display', 'none');
-  //   $('#create-cardset-title').css('display', 'none');
-  //   $('#checkbox-space').css('display', 'none');
-  //   $('#review-space').css('display', 'none');
-  //   $('#create-cards-container').css('display', 'none');
-  //   $('#study-more').css('display', 'none');
-  //   $('.clear-all').val('');
-  //   $('#show-cards-main').removeClass('flipped');
-  //   $('#show-cards-wrapper').removeClass('flipped');
-  //   //What is this???
-  //   $('.display-to-user').remove();
-  //   $('input[type="radio"]').prop('checked', false);
-  //   $('.show-cards').html(" ");
-  //   $('.header').css('background-image','url(img/blue.jpg)');
-  //   $('#checkbox-space').css('display','block');
-  // });
 
 
 });
